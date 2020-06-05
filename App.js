@@ -9,8 +9,8 @@ const instructions = Platform.select({
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
+      <Text style={styles.welcome}>Welcome to Food Truck</Text>
+      <Text style={styles.instructions}>Edited by Jake</Text>
       <Text style={styles.instructions}>{instructions}</Text>
     </View>
   );
