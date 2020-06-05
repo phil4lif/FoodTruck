@@ -5,7 +5,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Header />
-      {/* <Image source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}} style={styles.img}></Image> */}
+      <Image source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}} style={styles.img}></Image>
     </View>
   )
 };
