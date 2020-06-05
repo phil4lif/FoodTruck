@@ -1,36 +1,28 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
-
-export default function App() {
+import React from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import Header from './components/Header';
+const App = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to Food Truck</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
+      <Header />
+      {/* <Image source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}} style={styles.img}></Image> */}
     </View>
-  );
-}
+  )
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  text: {
+    color: 'darkslateblue',
+    fontSize: 50
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  img: {
+    width: 100,
+    height: 100,
+    borderRadius: 100 / 2,
+  }
+})
+
+export default App;
