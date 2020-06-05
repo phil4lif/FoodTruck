@@ -1,0 +1,17 @@
+{
+  "name": "FoodTruckApp",
+  "displayName": "FoodTruckApp",
+  "expo": {
+    "name": "FoodTruckApp",
+    "slug": "FoodTruckApp",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
