@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
   }
 
 //add routes
-// app.use(routes);
+app.use(routes);
 //connect to mongoDB
 mongoose.connect(process.env.MONGO_URI || "mongodb://localhost/foodtruck", { useNewUrlParser: true });
 
