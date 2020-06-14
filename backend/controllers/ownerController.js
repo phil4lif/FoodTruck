@@ -1,4 +1,4 @@
-const db = require('../models/owner');
+const db = require('../models');
 
 module.exports = {
     findAll: function() {
