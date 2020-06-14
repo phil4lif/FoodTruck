@@ -1,5 +1,5 @@
-const ownerController = require('../controllers/owner');
-const userController = require('../controllers/user');
+const ownerController = require('../controllers/ownerController');
+const userController = require('../controllers/userController');
 
 function apiRoutes(app) {
     app.get('/api/owner', (req, res) => {
