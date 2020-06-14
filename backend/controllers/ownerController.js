@@ -4,8 +4,8 @@ module.exports = {
     findAll: function() {
         return db.Owner.find({})
     },
-    create: function(newowner) {
-        console.log(newowner)
-        return db.Owner.create(newowner)
+    create: function(newOwner) {
+        console.log(newOwner)
+        return db.Owner.create(newOwner)
     }
 }
