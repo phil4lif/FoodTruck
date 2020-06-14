@@ -7,6 +7,6 @@ module.exports = {
 
     create: function(newuser) {
         console.log(newuser)
-        return db.user.create(newuser)
+        return db.User.create(newuser)
     }
 };
