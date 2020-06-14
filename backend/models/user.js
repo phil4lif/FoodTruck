@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ownerSchema = new Schema({
+const userSchema = new Schema({
     username: {type: String, required: true },
     image: String,
     favorites: Array
 })
 
-const Owner = mongoose.model("Owner", ownerSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = Owner;
+module.exports = User;

@@ -6,6 +6,6 @@ module.exports = {
     },
     create: function(newowner) {
         console.log(newowner)
-        return db.Book.create(newowner)
+        return db.Owner.create(newowner)
     }
 }
