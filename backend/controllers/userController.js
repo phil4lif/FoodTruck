@@ -5,8 +5,8 @@ module.exports = {
         return db.User.find({})
     },
 
-    create: function(newuser) {
-        console.log(newuser)
-        return db.User.create(newuser)
+    create: function(newUser) {
+        console.log(newUser)
+        return db.User.create(newUser)
     }
 };
