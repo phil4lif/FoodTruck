@@ -3,11 +3,9 @@ const Schema = mongoose.Schema;
 
 const ownerSchema = new Schema({
     truckname: { type: String, required: true },
-    username: { type: String, required: true },
-    image: String,
-    followers: Array
+    username: { type: String, required: true }
 })
 
-const Owner = mongoose.model("Owner", ownerSchema);
+const Owner = mongoose.model('Owner', ownerSchema);
 
 module.exports = Owner;
