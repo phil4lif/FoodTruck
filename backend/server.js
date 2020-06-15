@@ -42,7 +42,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-app.use(session({ secret: "gus", resave: false, saveUninitialized: true }));
+app.use(session({ secret: 'gus', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
@@ -58,6 +58,7 @@ if (process.env.NODE_ENV === 'production') {
 
 //add routes
 const apiRoutes = require('./routes/apiRoutes')(app);
+
 //connect to mongoDB
 mongoose.connect('mongodb://localhost/foodtruck', { useNewUrlParser: true });
 

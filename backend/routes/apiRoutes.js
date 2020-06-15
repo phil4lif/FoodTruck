@@ -25,16 +25,15 @@ function apiRoutes(app) {
       })
       .catch((err) => res.status(422).json(err));
   });
-  app.post('/api/user', (req, res, next) => {
-    let newuser = req.body;
-    userController.create(newuser).then((dbModel) => res.json(dbModel.data));
-    // newuser.save((err) => {
-    //   if (err) {
-    //     return next(err);
-    //   }
-    //   res.redirect('/');
-    // });
-  });
+  app.post('/api/create-user', userController.create);
+
+  // newuser.save((err) => {
+  //   if (err) {
+  //     return next(err);
+  //   }
+  //   res.redirect('/');
+  // });
+
   app.post(
     '/api/log-in',
     passport.authenticate('local', {
