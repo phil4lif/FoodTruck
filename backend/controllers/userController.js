@@ -16,12 +16,13 @@ module.exports = {
 };
 
 module.exports.create = [
-  // Validate fields
-  //   TODO - change fn console log err msgs to send resp to app instead
+  // VALIDATE FIELDS
+  // username and password must not be empty
+  // TODO - add stronger password requirements
   body('username', 'Username must not be empty.').trim().isLength({ min: 1 }),
-
   body('password', 'Password must not be empty.').trim().isLength({ min: 1, max: 64 }),
 
+  // Check if username already taken
   body('username')
     .custom((value) => {
       return db.User.findOne({ username: value }).then((foundUser) => {
@@ -32,10 +33,7 @@ module.exports.create = [
     })
     .bail(),
 
-  // Need a .catch here or something to get the Promise...
-
-  // TODO - Sanitizing fields isn't working? (whitespace not trimming)
-  // Sanitize fields (using wildcard).
+  // Remove whitespace (sanitization)
   body('*').escape().trim().bail(),
 
   //   body('confirmPassword', 'Confirm your password.').trim().isLength({ min: 1 }).bail(),
@@ -50,7 +48,6 @@ module.exports.create = [
   //     })
   //     .bail(),
   //
-  // Check if username already taken
 
   // Process request after validation and sanitization
   (req, res, next) => {
@@ -78,7 +75,9 @@ module.exports.create = [
           username: req.body.username,
           password: hashedPassword,
         });
+        //   Hashing complete; save to DB
         db.User.create(newUser);
+        //   Send success msg to client
         res.send('User ' + newUser.username + ' created');
       });
     }
