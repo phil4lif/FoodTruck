@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-
+import UserRegForm from './client/components/UserRegForm'
 const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
   android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
@@ -11,6 +11,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.welcome}>Welcome to Food Truck</Text>
       <Text style={styles.instructions}>Edited by Jake</Text>
+      <UserRegForm />
       <Text style={styles.instructions}>{instructions}</Text>
     </View>
   );
