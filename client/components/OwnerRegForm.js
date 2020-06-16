@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import axios from 'axios';
 function registerUser() {
-    console.log("register new user")
-    axios.post('/api/user', userdata);
+    console.log("register new owner")
+    axios.post('/api/owner', ownerdata);
 }
-export default function UserRegForm() {
+export default function OwnerRegForm() {
     return (
         <View>
             <Text>User Name</Text>
@@ -15,6 +15,9 @@ export default function UserRegForm() {
             <Text>Email</Text>
             <TextInput placeholder="Email"
             name="email" />
+            <Text>Food Truck Name</Text>
+            <TextInput placeholder="Food Truck Name"
+            name="foodtruckname" />
             <Text>Password</Text>
             <TextInput placeholder="Password"
             name="password" />
