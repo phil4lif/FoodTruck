@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import axios from 'axios';
-function registerUser() {
+function registerUser(req) {
     console.log("register new owner")
-    axios.post('/api/owner', ownerdata);
+    let ownerData = req.body
+    axios.post('/api/owner', ownerData);
 }
 export default function OwnerRegForm() {
     return (
