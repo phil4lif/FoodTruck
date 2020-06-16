@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native'
-
+import axios from 'axios';
+function registerUser() {
+    console.log("register new user")
+}
 export default function UserRegForm() {
     return (
         <View>
@@ -12,7 +15,9 @@ export default function UserRegForm() {
             <TextInput placeholder = "Password" />
             <Text>Confirm Password</Text>
             <TextInput placeholder = "Type Password Again" />
-            <TouchableOpacity style={styles.button}><Text>Register</Text></TouchableOpacity>
+            <Button title="Register"
+            style={styles.button}
+            onPress={registerUser} />
         </View>
     )
 }
