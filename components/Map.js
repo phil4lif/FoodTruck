@@ -65,8 +65,6 @@ export default function Map() {
     })();
   });
 
-
-
   let text = 'Waiting..';
   if (errorMsg) {
     text = errorMsg;
@@ -82,10 +80,10 @@ export default function Map() {
 
   const markers = markerInfo.map((marker) => (
     <Marker
-    //   onLayout={(event)=> {
-    // const { x, y, w, h } = event.nativeEvent.layout;
-    // return y})
-    //   }
+      //   onLayout={(event)=> {
+      // const { x, y, w, h } = event.nativeEvent.layout;
+      // return y})
+      //   }
       coordinate={marker.coordinates}
       title={marker.title}
       key={marker.key}
@@ -130,9 +128,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
-    height: height,
-    width: width,
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    alignSelf: 'stretch',
+    zIndex: 0,
+    // height: height,
+    // width: width,
+    // ...StyleSheet.absoluteFillObject,
   },
   bubble: {
     backgroundColor: 'rgba(255,255,255,0.7)',
