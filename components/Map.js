@@ -20,7 +20,7 @@ export default function Map() {
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA,
   });
-  const [markers, setMarkers] = useState([
+  const [markerInfo, setMarkerInfo] = useState([
     {
       title: 'Taco City',
       coordinates: {
@@ -30,7 +30,6 @@ export default function Map() {
       key: 0,
       active: true,
       color: '',
-      zIndex: '',
     },
     {
       title: 'Wild Mushroom',
@@ -41,7 +40,6 @@ export default function Map() {
       key: 1,
       active: false,
       color: '',
-      zIndex: '',
     },
     {
       title: 'Just Sandwiches',
@@ -65,10 +63,9 @@ export default function Map() {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     })();
-    // setRegion(location);
   });
 
-  useEffect(() => {});
+
 
   let text = 'Waiting..';
   if (errorMsg) {
@@ -76,6 +73,41 @@ export default function Map() {
   } else if (location) {
     text = JSON.stringify(location);
   }
+
+  // const updateZIndex = (marker) => {
+  //   onLayout={(event)=> {
+  //   const { x, y, w, h } = event.nativeEvent.layout;
+  //   return y})
+  //     } }
+
+  const markers = markerInfo.map((marker) => (
+    <Marker
+    //   onLayout={(event)=> {
+    // const { x, y, w, h } = event.nativeEvent.layout;
+    // return y})
+    //   }
+      coordinate={marker.coordinates}
+      title={marker.title}
+      key={marker.key}
+      style={styles.markerShadow /*{zIndex: updateZIndex(marker)}*/}
+    >
+      <Svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="36"
+        height="36"
+        viewBox="0 0 24 24"
+        fill={marker.active ? '#f31c63' : '#499aff'}
+        stroke="#000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-map-pin"
+      >
+        <Path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></Path>
+        <Circle cx="12" cy="10" r="4.5" fill="white"></Circle>
+      </Svg>
+    </Marker>
+  ));
 
   return (
     <View style={styles.container}>
@@ -85,31 +117,7 @@ export default function Map() {
         showsUserLocation={true}
         // onPress={(e) => this.onMapPress(e)}
       >
-        {markers.map((marker) => (
-          // (markers.active ? (markers.color = '#f31c63') : markers.color = '#2c82ed')
-          <Marker
-            coordinate={marker.coordinates}
-            title={marker.title}
-            key={marker.key}
-            style={styles.markerShadow, {zIndex: marker.coordinates.latitude}}
-          >
-            <Svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="36"
-              height="36"
-              viewBox="0 0 24 24"
-              fill={marker.active ? '#f31c63' : '#499aff'}
-              stroke="#000"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-map-pin"
-            >
-              <Path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></Path>
-              <Circle cx="12" cy="10" r="4.5" fill="white"></Circle>
-            </Svg>
-          </Marker>
-        ))}
+        {markers}
       </MapView>
     </View>
   );
