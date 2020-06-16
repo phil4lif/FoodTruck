@@ -10,6 +10,8 @@ export default function UserRegForm() {
             <TextInput placeholder = "Email" />
             <Text>Password</Text>
             <TextInput placeholder = "Password" />
+            <Text>Confirm Password</Text>
+            <TextInput placeholder = "Type Password Again" />
         </View>
     )
 }
