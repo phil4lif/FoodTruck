@@ -1,9 +1,8 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
-// const { sanitizeBody } = require('express-validator');
+const { sanitizeBody } = require('express-validator');
 const async = require('async');
 const db = require('../models');
 

@@ -4,6 +4,8 @@ const ownerController = require('../controllers/ownerController');
 const userController = require('../controllers/userController');
 const { User } = require('../models');
 
+
+// GET requests to retrieve users and truck owners
 function apiRoutes(app) {
   app.get('/api/owner', (req, res) => {
     ownerController
@@ -13,10 +15,10 @@ function apiRoutes(app) {
       })
       .catch((err) => res.status(422).json(err));
   });
-  app.post('/api/owner', (req, res) => {
-    let newowner = req.body;
-    ownerController.create(newowner).then((dbModel) => res.json(dbModel.data));
-  });
+  // app.post('/api/owner', (req, res) => {
+  //   let newowner = req.body;
+  //   ownerController.create(newowner).then((dbModel) => res.json(dbModel.data));
+  // });
   app.get('/api/user', (req, res) => {
     userController
       .findAll()
@@ -25,7 +27,10 @@ function apiRoutes(app) {
       })
       .catch((err) => res.status(422).json(err));
   });
+
+  // POST requests to create users and truck owners
   app.post('/api/create-user', userController.create);
+  app.post('/api/create-owner', ownerController.create);
 
   // newuser.save((err) => {
   //   if (err) {
