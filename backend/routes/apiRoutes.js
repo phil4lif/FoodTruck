@@ -25,26 +25,16 @@ function apiRoutes(app) {
       .catch((err) => res.status(422).json(err));
   });
 
-  // GET request for truck info (not owner accounts)
+  // GET request for all trucks
   app.get('/api/trucks', truckController.getTrucks);
-
-  // app.post('/api/owner', (req, res) => {
-  //   let newowner = req.body;
-  //   ownerController.create(newowner).then((dbModel) => res.json(dbModel.data));
-  // });
 
   // POST requests to create users and truck owners
   app.post('/api/create-user', userController.create);
   app.post('/api/create-owner', ownerController.create);
   app.post('/api/create-truck', truckController.create);
 
-  // newuser.save((err) => {
-  //   if (err) {
-  //     return next(err);
-  //   }
-  //   res.redirect('/');
-  // });
-
+  // POST request for user/owner login
+  // TODO - Add functionality
   app.post(
     '/api/log-in',
     passport.authenticate('local', {
