@@ -1,5 +1,4 @@
 const { body, validationResult } = require('express-validator');
-const { sanitizeBody } = require('express-validator');
 const db = require('../models');
 
 module.exports.getTrucks = (req, res, next) => {
@@ -17,20 +16,6 @@ module.exports.create = [
   body('truckName', 'Truck name must not be empty.').trim().isLength({ min: 1 }),
   body('foodType', 'Food type must not be empty.').trim().isLength({ min: 1, max: 64 }),
   body('homeLoc', 'Enter your home location.').trim().isLength({ min: 1, max: 64 }),
-
-  // Check if truck already exists for owner
-  // TODO - add forEach loop to check each truck in array
-  // TODO - If (trucks[i].truckName = req.body.truckName ...)
-  body('truckName')
-    .custom((value) => {
-      return db.Owner.findOne({ trucks: { truckName: value } }).then((foundTruck) => {
-        if (foundTruck) {
-          console.log("you've added this truck...");
-          return Promise.reject("You've already added this truck");
-        }
-      });
-    })
-    .bail(),
 
   // Remove whitespace (sanitization)
   body('*').escape().trim().bail(),
@@ -51,7 +36,7 @@ module.exports.create = [
       next();
     }
     if (errors.isEmpty()) {
-      /**/ console.log('validation passed');
+      /**/ console.log('Field validation passed');
 
       const newTruck = {
         truckName: req.body.truckName,
@@ -60,27 +45,46 @@ module.exports.create = [
         homeLoc: req.body.homeLoc,
       };
 
-      // Finds owner in db
-      db.Owner.findOne({ username: req.body.owner }).then(async (foundUser) => {
-        // Owner found; add truck
-        if (foundUser) {
-          console.log(newTruck);
-          await foundUser.trucks.push(newTruck);
-          await foundUser.save();
+      const checkIfTruckExists = (foundOwner) => {
+        // Determine if the owner already has a truck with that name
+        let isTruckNew = true;
+        foundOwner.trucks.forEach((truck) => {
+          if (truck.truckName === req.body.truckName) {
+            console.log('Found ', truck.truckName);
+            isTruckNew = false;
+          }
+        });
+        console.log('isTruckNew: ', isTruckNew);
+        return isTruckNew;
+      };
 
-          console.log(foundUser);
-          res.send(newTruck.truckName + ' added to owner ' + foundUser.username);
+      const pushTruckToOwner = async (foundOwner) => {
+        console.log('2');
+        await foundOwner.trucks.push(newTruck);
+        await foundOwner.save();
+      };
+
+      // Finds owner and adds truck if it doesn't already exist
+      db.Owner.findOne({ username: req.body.owner }).then((foundOwner) => {
+        if (foundOwner) {
+          // Owner found; Check if truck already exists
+          if (checkIfTruckExists(foundOwner)) {
+            // Truck not found, push truck to owner
+            pushTruckToOwner(foundOwner);
+            // Send response to client
+            console.log(foundOwner);
+            res.send(newTruck.truckName + ' added to owner ' + foundOwner.username);
+          }
+          // Truck already exists; Send err msg to client
+          else {
+            res.send("You've already added a truck with this name.");
+          }
         }
-        // Could not find owner in db (shouldn't happen if owner is logged in...)
-        else if (!foundUser) {
+        // Owner not found (shouldn't happen if owner is logged in...)
+        else {
           res.send('Owner not found');
         }
       });
-
-      // db.Owner.trucks.push()({
-      // Push new created truck's auto-assigned id
-      // });
-      //   Send success msg to client
     }
   },
 ];
