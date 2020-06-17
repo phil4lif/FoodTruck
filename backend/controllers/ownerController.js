@@ -7,10 +7,10 @@ const async = require('async');
 const db = require('../models');
 
 module.exports = {
-    findAll: function() {
-        return db.Owner.find({})
-    },
-}
+  findAll: function () {
+    return db.Owner.find({});
+  },
+};
 
 module.exports.create = [
   // VALIDATE FIELDS
@@ -70,7 +70,8 @@ module.exports.create = [
         if (err) return next(err);
         const newOwner = new db.Owner({
           username: req.body.username,
-            password: hashedPassword,
+          password: hashedPassword,
+          trucks: [] /* Adds empty trucks array, ready for adding truck(s) */,
         });
         //   Hashing complete; save to DB
         db.Owner.create(newOwner);
