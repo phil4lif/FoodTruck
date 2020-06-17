@@ -3,10 +3,22 @@ const db = require('../models');
 
 module.exports.getTrucks = (req, res, next) => {
   console.log('Getting trucks...');
-  db.Owner.find({ trucks: {} }).then((foundTrucks) => {
-    if (foundTrucks) {
-      return res.json(foundTrucks);
-    }
+  // Empty array to store all trucks
+  const allTrucks = [];
+  // First get all owners
+  db.Owner.find({}).then((foundOwners) => {
+    // Loop through each owner
+    foundOwners.forEach((owner) => {
+      // Loop through each truck
+      owner.trucks.forEach((truck) => {
+        // Add owner's username to truck object
+        truck.owner = owner.username;
+        // Push truck to array of all trucks
+        allTrucks.push(truck);
+      });
+    });
+    // Send array of all trucks to client
+    return res.json(allTrucks);
   });
 };
 
