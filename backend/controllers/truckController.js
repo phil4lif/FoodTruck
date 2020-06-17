@@ -1,5 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const db = require('../models');
+const mongoose = require('mongoose');
 
 module.exports.getTrucks = (req, res, next) => {
   console.log('Getting trucks...');
@@ -49,13 +50,17 @@ module.exports.create = [
     }
     if (errors.isEmpty()) {
       /**/ console.log('Field validation passed');
+      let newId = mongoose.Types.ObjectId();
 
       const newTruck = {
+        truckId: mongoose.Types.ObjectId(),
         truckName: req.body.truckName,
         foodType: req.body.foodType,
         catering: req.body.catering,
         homeLoc: req.body.homeLoc,
       };
+
+      console.log(newTruck);
 
       const checkIfTruckExists = (foundOwner) => {
         // Determine if the owner already has a truck with that name
@@ -71,7 +76,6 @@ module.exports.create = [
       };
 
       const pushTruckToOwner = async (foundOwner) => {
-        console.log('2');
         await foundOwner.trucks.push(newTruck);
         await foundOwner.save();
       };
