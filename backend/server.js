@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'production') {
 const apiRoutes = require('./routes/apiRoutes')(app);
 
 //connect to mongoDB
-mongoose.connect('mongodb://localhost/foodtruck', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/foodtruck', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

@@ -6,11 +6,6 @@ const { sanitizeBody } = require('express-validator');
 const async = require('async');
 const db = require('../models');
 
-module.exports = {
-  findAll: function () {
-    return db.Owner.find({});
-  },
-};
 
 module.exports.create = [
   // VALIDATE FIELDS
@@ -22,8 +17,8 @@ module.exports.create = [
   // Check if username already taken
   body('username')
     .custom((value) => {
-      return db.Owner.findOne({ username: value }).then((foundOwner) => {
-        if (foundOwner) {
+      return db.User.findOne({ username: value }).then((foundUser) => {
+        if (foundUser) {
           return Promise.reject('Username taken');
         }
       });
@@ -68,15 +63,14 @@ module.exports.create = [
       bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
         /**/ console.log('hashing password...');
         if (err) return next(err);
-        const newOwner = new db.Owner({
+        const newUser = new db.User({
           username: req.body.username,
           password: hashedPassword,
-          trucks: [] /* Adds empty trucks array, ready for adding truck(s) */,
         });
         //   Hashing complete; save to DB
-        db.Owner.create(newOwner);
+        db.User.create(newUser);
         //   Send success msg to client
-        res.send('Owner ' + newOwner.username + ' created');
+        res.send('User ' + newUser.username + ' created');
       });
     }
   },
