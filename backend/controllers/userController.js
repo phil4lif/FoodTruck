@@ -1,9 +1,8 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
-// const { sanitizeBody } = require('express-validator');
+const { sanitizeBody } = require('express-validator');
 const async = require('async');
 const db = require('../models');
 
@@ -36,8 +35,8 @@ module.exports.create = [
   // Remove whitespace (sanitization)
   body('*').escape().trim().bail(),
 
-  //   body('confirmPassword', 'Confirm your password.').trim().isLength({ min: 1 }).bail(),
   // TODO - Make sure password confirmation matches
+  //   body('confirmPassword', 'Confirm your password.').trim().isLength({ min: 1 }).bail(),
   //   body('confirmPassword')
   //     .custom((value, { req }) => {
   //       /**/ console.log('checking passwords...');
