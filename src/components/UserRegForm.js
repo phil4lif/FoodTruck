@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native'
-import axios from 'axios';
-function registerUser() {
-    console.log("register new user")
-    axios.post('/api/user', userdata);
-}
-export default function UserRegForm() {
+
+
+const UserRegForm = () => {
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('')
     return (
         <View>
             <Text>User Name</Text>
             <TextInput style={styles.input}
              placeholder="User Name"
-             name="username" />
+             value={userName}
+             onChangeText={text => setUserName(text)}
+              />
             <Text>Email</Text>
             <TextInput placeholder="Email"
-            name="email" />
+            value={email}
+            onChangeText={text => setEmail(text)}
+             />
             <Text>Password</Text>
             <TextInput placeholder="Password"
-            name="password" />
-            <Text>Confirm Password</Text>
-            <TextInput placeholder="Type Password Again"
-            name="passwordcheck" />
+            value={password}
+            onChangeText={text => setPassword(text)}
+             />
             <Button title="Register"
             style={styles.button}
-            onPress={registerUser} />
+            />
         </View>
     )
 }
@@ -39,3 +42,5 @@ const styles = StyleSheet.create({
         marginBottom: 10
       }
 })
+
+export default UserRegForm;

@@ -1,37 +1,26 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import UserRegForm from './client/components/UserRegForm'
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+import React from 'react'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import UserRegScreen from './src/screens/UserRegScreen'
+import OwnerRegScreen from './src/screens/OwnerRegScreen';
+const navigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    UserReg: UserRegScreen,
+    OwnerReg: OwnerRegScreen
+  },
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      title: 'Home'
+    }
+  })
 
-export default function App() {
+const App = createAppContainer(navigator);
+
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to Food Truck</Text>
-      <Text style={styles.instructions}>Edited by Jake</Text>
-      <UserRegForm />
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
-  );
+      <App />
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
