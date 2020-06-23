@@ -5,9 +5,16 @@ import OwnerRegForm from '../components/OwnerRegForm';
 const OwnerRegScreen = ({ navigation }) => {
     return (
         <View>
-            <Text>Register as an owner</Text>
+            <Text style={styles.text}>Register as an owner</Text>
             <OwnerRegForm />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 24,
+        alignSelf: 'center'
+    }
+})
 export default OwnerRegScreen;

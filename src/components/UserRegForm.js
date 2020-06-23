@@ -7,20 +7,25 @@ const UserRegForm = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('')
     return (
-        <View>
-            <Text>User Name</Text>
-            <TextInput style={styles.input}
+        <View style={styles.containerStyle}>
+            <Text style={styles.labelStyle}>User Name</Text>
+            <TextInput 
+            style={styles.input}
              placeholder="User Name"
              value={userName}
              onChangeText={text => setUserName(text)}
               />
-            <Text>Email</Text>
-            <TextInput placeholder="Email"
+            <Text style={styles.labelStyle}>Email</Text>
+            <TextInput 
+            style={styles.input}
+            placeholder="Email"
             value={email}
             onChangeText={text => setEmail(text)}
              />
-            <Text>Password</Text>
-            <TextInput placeholder="Password"
+            <Text style={styles.labelStyle}>Password</Text>
+            <TextInput 
+            style={styles.input}
+            placeholder="Password"
             value={password}
             onChangeText={text => setPassword(text)}
              />
@@ -32,15 +37,19 @@ const UserRegForm = () => {
 }
 
 const styles = StyleSheet.create({
-    input: {
-        border: '1 solid black'
+    containerStyle:{
+        alignItems: 'center'
     },
-    button: {
-        alignItems: 'center',
-        backgroundColor: 'blue',
-        padding: 10,
-        marginBottom: 10
-      }
+    labelStyle: {
+        fontSize: 18
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        height: 30,
+        width: 120,
+    },
 })
 
 export default UserRegForm;
