@@ -50,12 +50,6 @@ const styles = StyleSheet.create({
         height: 30,
         width: 120,
     },
-    button: {
-        alignItems: 'center',
-        // backgroundColor: 'blue',
-        padding: 10,
-        marginBottom: 10
-      }
 })
 
 export default UserRegForm;

@@ -5,9 +5,16 @@ import UserRegForm from '../components/UserRegForm';
 const UserRegScreen = ({ navigation }) => {
     return (
         <View>
-            <Text>Register as a user</Text>
+            <Text style={styles.text}>Sign up to follow your favorite food trucks</Text>
             <UserRegForm />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 24,
+        alignSelf: 'center'
+    }
+})
 export default UserRegScreen;
