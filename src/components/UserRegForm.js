@@ -24,6 +24,7 @@ const UserRegForm = () => {
              />
             <Text style={styles.labelStyle}>Password</Text>
             <TextInput 
+            secureTextEntry
             style={styles.input}
             placeholder="Password"
             value={password}

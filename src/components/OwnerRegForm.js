@@ -32,6 +32,7 @@ const UserRegForm = () => {
             />
             <Text style={styles.labelStyle}>Password</Text>
             <TextInput
+                secureTextEntry
                 style={styles.input}
                 placeholder="Password"
                 value={password}
@@ -45,7 +46,7 @@ const UserRegForm = () => {
 }
 
 const styles = StyleSheet.create({
-    containerStyle:{
+    containerStyle: {
         alignItems: 'center'
     },
     labelStyle: {

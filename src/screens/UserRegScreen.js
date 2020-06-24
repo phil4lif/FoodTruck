@@ -4,7 +4,7 @@ import UserRegForm from '../components/UserRegForm';
 
 const UserRegScreen = ({ navigation }) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.text}>Sign up to follow your favorite food trucks</Text>
             <UserRegForm />
         </View>
@@ -12,6 +12,11 @@ const UserRegScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginBottom: 200,
+        justifyContent: 'center'
+    },
     text: {
         fontSize: 24,
         alignSelf: 'center'
