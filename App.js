@@ -1,26 +1,32 @@
 import React from 'react'
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeScreen from './src/screens/HomeScreen';
 import UserRegScreen from './src/screens/UserRegScreen'
 import OwnerRegScreen from './src/screens/OwnerRegScreen';
-const navigator = createStackNavigator(
-  {
-    Home: HomeScreen,
+import SigninScreen from './src/screens/SigninScreen';
+import AccountScreen from './src/screens/AccountScreen';
+
+const switchNavigator = createSwitchNavigator({
+  loginFlow: createStackNavigator({
+    Signin: SigninScreen,
     UserReg: UserRegScreen,
     OwnerReg: OwnerRegScreen
-  },
-  {
-    initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      title: 'Home'
-    }
-  })
+  }),
+  mainFlow: createBottomTabNavigator({
+    Home: HomeScreen,
+    Account: AccountScreen
+  }),
 
-const App = createAppContainer(navigator);
+});
+
+
+
+const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-      <App />
+    <App />
   )
 }
