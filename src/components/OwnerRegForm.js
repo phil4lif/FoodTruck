@@ -41,6 +41,7 @@ const UserRegForm = () => {
             <Button title="Register"
                 style={styles.button}
             />
+            
         </View>
     )
 }

@@ -1,12 +1,16 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import OwnerRegForm from '../components/OwnerRegForm';
+import NavLink from '../components/NavLink';
 
 const OwnerRegScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Register as an owner</Text>
             <OwnerRegForm />
+            <NavLink 
+            routeName="Signin"
+            text="Already Registered? Switch to Sign In" />
         </View>
     )
 }

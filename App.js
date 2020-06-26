@@ -10,15 +10,14 @@ import AccountScreen from './src/screens/AccountScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
+    Home: HomeScreen,
     Signin: SigninScreen,
     UserReg: UserRegScreen,
     OwnerReg: OwnerRegScreen
   }),
   mainFlow: createBottomTabNavigator({
-    Home: HomeScreen,
     Account: AccountScreen
   }),
-
 });
 
 
