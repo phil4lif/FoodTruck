@@ -1,26 +1,32 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Button, ImageBackground } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
     return (
-        <View>
-            <Button
-            style={styles.buttonStyle}
-            onPress={() => navigation.navigate('UserReg')}
-            title="Register as a food truck fan"
-            />
-            <Button
-            style={styles.buttonStyle}
-            onPress={() => navigation.navigate('OwnerReg')}
-            title="Register as a food truck"
-            />
+        <View style={styles.container}>
+            <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
+                <TouchableOpacity onPress={() => navigation.navigate('UserReg')}>
+                    <Text style={styles.buttonStyle}>Register</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('OwnerReg')}>
+                    <Text style={styles.buttonStyle}>Register as truck</Text>
+                </TouchableOpacity>
+            </ImageBackground>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     buttonStyle: {
-        marginHorizontal: 5
-    }
+        marginTop: 15,
+        fontSize: 28,
+    },
+    container: {
+    },
+    image: {
+        height: '100%',
+        resizeMode: "cover",
+        alignItems: 'center'
+    },
 })
 export default HomeScreen;

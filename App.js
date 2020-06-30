@@ -7,7 +7,8 @@ import UserRegScreen from './src/screens/UserRegScreen'
 import OwnerRegScreen from './src/screens/OwnerRegScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import AccountScreen from './src/screens/AccountScreen';
-
+import UserHomeScreen from './src/screens/UserHomeScreen';
+import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
     Home: HomeScreen,
@@ -16,7 +17,9 @@ const switchNavigator = createSwitchNavigator({
     OwnerReg: OwnerRegScreen
   }),
   mainFlow: createBottomTabNavigator({
-    Account: AccountScreen
+    Account: AccountScreen,
+    OwnerHome: OwnerHomeScreen,
+    UserHome: UserHomeScreen
   }),
 });
 
