@@ -24,9 +24,10 @@ const signupuser = dispatch => async ({ username, email, password }) => {
     }
 };
 
-const signupowner = dispatch => async ({ username, email, password }) => {
+const signupowner = dispatch => async ({ username, email, truckname, password }) => {
+    console.log(username, email, truckname, password)
     try {
-        const response = await ftn.post('/api/create-owner', {username, email, password});
+        const response = await ftn.post('/api/create-owner', {username, password});
         dispatch({type: 'signin', payload: response });
         navigate('mainFlow');
     } catch (err) {
@@ -36,6 +37,6 @@ const signupowner = dispatch => async ({ username, email, password }) => {
 
 export const { Provider, Context } = createDataContext(
     authReducer,
-    { signupuser },
+    { signupuser, signupowner },
     {}
 );
