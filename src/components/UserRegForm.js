@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'rea
 
 
 const UserRegForm = ({ onSubmit }) => {
-    const [userName, setUserName] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('')
     return (
@@ -12,8 +12,8 @@ const UserRegForm = ({ onSubmit }) => {
             <TextInput 
             style={styles.input}
              placeholder="User Name"
-             value={userName}
-             onChangeText={text => setUserName(text)}
+             value={username}
+             onChangeText={text => setUsername(text)}
               />
             <Text style={styles.labelStyle}>Email</Text>
             <TextInput 
@@ -32,7 +32,7 @@ const UserRegForm = ({ onSubmit }) => {
              />
             <Button title="Register"
             style={styles.button}
-            onPress={() => onSubmit({ userName, email, password })}
+            onPress={() => onSubmit({ username, email, password })}
             />
         </View>
     )

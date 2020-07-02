@@ -9,10 +9,10 @@ const authReducer = (state, action) => {
             return { errorMessage: '', response: action.payload };
     }
 }
-const signup = dispatch => async ({ userName, email, password }) => {
-    console.log(userName, email, password)
+const signup = dispatch => async ({ username, email, password }) => {
+    console.log(username, email, password)
     try {
-        const response = await ftn.post('/api/create-user', { userName, email, password });
+        const response = await ftn.post('/api/create-user', { username, email, password });
         // await AsyncStorage.setItem('token', response.data.token);
         // console.log(username, email, password)
         dispatch({ type: 'signin', payload: response });
