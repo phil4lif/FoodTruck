@@ -7,9 +7,11 @@ const authReducer = (state, action) => {
     switch (action.type) {
         case 'signin':
             return { errorMessage: '', response: action.payload };
+        case 'add_error':
+            return { errorMessage: action.payload }
     }
 }
-const signup = dispatch => async ({ username, email, password }) => {
+const signupuser = dispatch => async ({ username, email, password }) => {
     console.log(username, email, password)
     try {
         const response = await ftn.post('/api/create-user', { username, email, password });
@@ -18,12 +20,22 @@ const signup = dispatch => async ({ username, email, password }) => {
         dispatch({ type: 'signin', payload: response });
         navigate('mainFlow');
     } catch (err) {
-        // dispatch({ type: 'add_error', payload: 'Something went wrong' })
+        dispatch({ type: 'add_error', payload: 'Something went wrong' })
     }
 };
 
+const signupowner = dispatch => async ({ username, email, password }) => {
+    try {
+        const response = await ftn.post('/api/create-owner', {username, email, password});
+        dispatch({type: 'signin', payload: response });
+        navigate('mainFlow');
+    } catch (err) {
+        dispatch({ type: 'add_error', payload: 'Something went wrong' })
+    }
+}
+
 export const { Provider, Context } = createDataContext(
     authReducer,
-    { signup },
+    { signupuser },
     {}
 );

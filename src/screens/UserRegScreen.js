@@ -6,12 +6,12 @@ import { Context as AuthContext } from '../context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
 
 const UserRegScreen = ({ navigation }) => {
-const { state, signup } = useContext(AuthContext);
+const { state, signupuser } = useContext(AuthContext);
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Sign up to find and follow your favorite food trucks</Text>
             <UserRegForm
-                onSubmit={signup}
+                onSubmit={signupuser}
             />
             <NavLink
                 routeName="Signin"
