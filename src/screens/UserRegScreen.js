@@ -1,20 +1,30 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import UserRegForm from '../components/UserRegForm';
 import NavLink from '../components/NavLink';
+import { Context as AuthContext } from '../context/AuthContext';
+import { NavigationEvents } from 'react-navigation';
 
 const UserRegScreen = ({ navigation }) => {
+const { state, signup } = useContext(AuthContext);
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Sign up to follow your favorite food trucks</Text>
-            <UserRegForm />
-            <NavLink 
-            routeName="Signin"
-            text="Already Registered? Switch to Sign In" />
+            <Text style={styles.text}>Sign up to find and follow your favorite food trucks</Text>
+            <UserRegForm
+                onSubmit={signup}
+            />
+            <NavLink
+                routeName="Signin"
+                text="Already Registered? Switch to Sign In" />
         </View>
     )
 }
 
+UserRegScreen.navigationOptions = () => {
+    return {
+        header: () => false,
+    };
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,

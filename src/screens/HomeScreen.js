@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, ImageBackground } from 'react-native';
-
+import { SafeAreaView } from 'react-navigation';
+import TopSpacer from '../components/TopSpacer';
 const HomeScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
+                <TopSpacer />
                 <TouchableOpacity onPress={() => navigation.navigate('UserReg')}>
                     <Text style={styles.buttonStyle}>Register</Text>
                 </TouchableOpacity>
@@ -15,6 +17,12 @@ const HomeScreen = ({ navigation }) => {
         </View>
     )
 }
+
+HomeScreen.navigationOptions = () => {
+    return {
+        header: () => false,
+    };
+};
 
 const styles = StyleSheet.create({
     buttonStyle: {

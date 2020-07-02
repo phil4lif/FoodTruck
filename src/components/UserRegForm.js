@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native'
 
 
-const UserRegForm = () => {
+const UserRegForm = ({ onSubmit }) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('')
@@ -32,6 +32,7 @@ const UserRegForm = () => {
              />
             <Button title="Register"
             style={styles.button}
+            onPress={() => onSubmit({ userName, email, password })}
             />
         </View>
     )

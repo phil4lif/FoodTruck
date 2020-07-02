@@ -9,6 +9,8 @@ import SigninScreen from './src/screens/SigninScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
+import { Provider as AuthProvider } from './src/context/AuthContext'
+
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
     Home: HomeScreen,
@@ -29,6 +31,8 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
+    <AuthProvider>
     <App />
+    </AuthProvider>
   )
 }
