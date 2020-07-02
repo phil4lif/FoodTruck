@@ -10,6 +10,7 @@ import AccountScreen from './src/screens/AccountScreen';
 import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext'
+import { setNavigator } from './src/navigationRef';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -18,11 +19,14 @@ const switchNavigator = createSwitchNavigator({
     UserReg: UserRegScreen,
     OwnerReg: OwnerRegScreen
   }),
-  mainFlow: createBottomTabNavigator({
-    Account: AccountScreen,
-    OwnerHome: OwnerHomeScreen,
-    UserHome: UserHomeScreen
+  userFlow: createBottomTabNavigator({
+    UserHome: UserHomeScreen,
+    Account: AccountScreen
   }),
+  ownerFlow: createBottomTabNavigator({
+    OwnerHome: OwnerHomeScreen,
+    Account: AccountScreen
+  })
 });
 
 
@@ -32,7 +36,7 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <AuthProvider>
-    <App />
+    <App ref={(navigator) => { setNavigator(navigator) }}/>
     </AuthProvider>
   )
 }

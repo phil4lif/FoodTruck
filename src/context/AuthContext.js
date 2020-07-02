@@ -16,9 +16,8 @@ const signupuser = dispatch => async ({ username, email, password }) => {
     try {
         const response = await ftn.post('/api/create-user', { username, email, password });
         // await AsyncStorage.setItem('token', response.data.token);
-        // console.log(username, email, password)
         dispatch({ type: 'signin', payload: response });
-        navigate('mainFlow');
+        navigate('UserHome');
     } catch (err) {
         dispatch({ type: 'add_error', payload: 'Something went wrong' })
     }
@@ -29,7 +28,7 @@ const signupowner = dispatch => async ({ username, email, truckname, password })
     try {
         const response = await ftn.post('/api/create-owner', {username, password});
         dispatch({type: 'signin', payload: response });
-        navigate('mainFlow');
+        navigate('OwnerHome');
     } catch (err) {
         dispatch({ type: 'add_error', payload: 'Something went wrong' })
     }
