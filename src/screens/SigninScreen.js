@@ -7,7 +7,7 @@ const SigninScreen = () => {
             <Text style={{ fontSize: 48 }}>SigninScreen</Text>
             <NavLink
                 routeName=""
-                text="Not Registered? Switch to Sign In" />
+                text="Not Registered? Switch to User Sign Up" />
         </ImageBackground>
     )
 };

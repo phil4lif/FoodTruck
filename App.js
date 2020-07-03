@@ -11,6 +11,7 @@ import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
+import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -21,6 +22,7 @@ const switchNavigator = createSwitchNavigator({
   }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
+    BrowseTrucks: BrowseTrucksScreen,
     Account: AccountScreen
   }),
   ownerFlow: createBottomTabNavigator({
