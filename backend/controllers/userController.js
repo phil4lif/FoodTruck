@@ -102,10 +102,6 @@ module.exports.login = (req, res, next) => {
       // res.status(200).json(response);
       // return res.redirect(client + '/private-space');
       console.log('req.session (inside login logic): ', req.session);
-
-      const userId = JSON.stringify(req.session.passport.user._id).replace(/"/g, '');
-      console.log('userId: ', userId);
-
       res.json('Login successful');
     });
   })(req, res, next);

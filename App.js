@@ -20,12 +20,12 @@ const switchNavigator = createSwitchNavigator({
     SignIn: SignInScreen,
     UserReg: UserRegScreen,
     OwnerReg: OwnerRegScreen,
-    MapScreen: MapScreen,
+    Map: MapScreen,
   }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
     Account: AccountScreen,
-    MapScreen: MapScreen,
+    Map: MapScreen,
   }),
   ownerFlow: createBottomTabNavigator({
     OwnerHome: OwnerHomeScreen,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, SafeAreaView, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
-export default function TruckCard() {
+export default function TruckCarousel() {
   const [truckCards, setTruckCards] = useState([
     {
       title: 'Item 1',

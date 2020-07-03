@@ -33,11 +33,13 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(err, user);
+  console.log('serialize user: ', user);
+  done(null, user);
 });
 
 passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => {
+    console.log('deserialize user: ', user);
     done(err, user);
   });
 });

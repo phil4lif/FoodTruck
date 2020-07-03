@@ -4,18 +4,18 @@ import { SafeAreaView } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import TopSpacer from '../components/TopSpacer';
 import Map from '../components/Map.js';
-import TruckCard from '../components/TruckCard.js';
+import TruckCarousel from '../components/TruckCarousel.js';
 
 const MapScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="blue" barStyle="dark-content" />
+      {/* <StatusBar backgroundColor="blue" barStyle="dark-content" /> */}
       <Map />
       <View style={styles.textBox}>
         <Text style={styles.welcome}>Welcome to Food Truck</Text>
         <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put a search bar here</Text>
       </View>
-      <TruckCard />
+      <TruckCarousel />
       <View style={styles.bottomBar}>
         <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put some icons here or something</Text>
       </View>

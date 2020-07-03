@@ -39,8 +39,8 @@ const signIn = (dispatch) => async ({ username, password }) => {
   try {
     const response = await ftn.post('/api/login', { username, password });
     console.log('response: ', response);
-    dispatch({ type: 'MapScreen', payload: response });
-    navigate('MapScreen');
+    dispatch({ type: 'SignIn', payload: response });
+    navigate('Map');
   } catch (err) {
     dispatch({ type: 'add-error', payload: 'Something went wrong' });
   }
