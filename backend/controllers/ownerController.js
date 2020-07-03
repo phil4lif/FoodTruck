@@ -6,6 +6,8 @@ const { sanitizeBody } = require('express-validator');
 const async = require('async');
 const db = require('../models');
 
+passport.initialize();
+
 module.exports = {
   findAll: function () {
     return db.Owner.find({});

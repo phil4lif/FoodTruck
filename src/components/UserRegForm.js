@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native'
 
 
-const UserRegForm = () => {
-    const [userName, setUserName] = useState('');
+const UserRegForm = ({ onSubmit }) => {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('')
     return (
@@ -12,8 +12,8 @@ const UserRegForm = () => {
             <TextInput 
             style={styles.input}
              placeholder="User Name"
-             value={userName}
-             onChangeText={text => setUserName(text)}
+             value={username}
+             onChangeText={text => setUsername(text)}
               />
             <Text style={styles.labelStyle}>Email</Text>
             <TextInput 
@@ -24,6 +24,7 @@ const UserRegForm = () => {
              />
             <Text style={styles.labelStyle}>Password</Text>
             <TextInput 
+            secureTextEntry
             style={styles.input}
             placeholder="Password"
             value={password}
@@ -31,6 +32,7 @@ const UserRegForm = () => {
              />
             <Button title="Register"
             style={styles.button}
+            onPress={() => onSubmit({ username, email, password })}
             />
         </View>
     )
