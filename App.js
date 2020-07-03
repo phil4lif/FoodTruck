@@ -1,30 +1,52 @@
 import * as React from 'react';
 import { Platform, StyleSheet, StatusBar, Text, View } from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Provider as AuthProvider } from './src/context/AuthContext';
+import { setNavigator } from './src/navigationRef';
+import HomeScreen from './src/screens/HomeScreen';
+import UserRegScreen from './src/screens/UserRegScreen'
+import OwnerRegScreen from './src/screens/OwnerRegScreen';
+import SigninScreen from './src/screens/SigninScreen';
+import AccountScreen from './src/screens/AccountScreen';
+import UserHomeScreen from './src/screens/UserHomeScreen';
+import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
 import Map from './components/Map.js';
 import TruckCard from './components/TruckCard.js';
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
+const switchNavigator = createSwitchNavigator({
+  loginFlow: createStackNavigator({
+    Home: HomeScreen,
+    Signin: SigninScreen,
+    UserReg: UserRegScreen,
+    OwnerReg: OwnerRegScreen
+  }),
+  userFlow: createBottomTabNavigator({
+    UserHome: UserHomeScreen,
+    Account: AccountScreen
+  }),
+  ownerFlow: createBottomTabNavigator({
+    OwnerHome: OwnerHomeScreen,
+    Account: AccountScreen
+  })
 });
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="blue" barStyle="dark-content" />
-      <Map />
-      <View style={styles.textBox}>
-        <Text style={styles.welcome}>Welcome to Food Truck</Text>
-        <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put a search bar here</Text>
-      </View>
-      <TruckCard />
-      <View style={styles.bottomBar}>
-        <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put some icons here or something</Text>
-      </View>
-    </View>
-  );
-}
+// Map screen code -> move to separate screen
+    // <View style={styles.container}>
+    //   <StatusBar backgroundColor="blue" barStyle="dark-content" />
+    //   <Map />
+    //   <View style={styles.textBox}>
+    //     <Text style={styles.welcome}>Welcome to Food Truck</Text>
+    //     <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put a search bar here</Text>
+    //   </View>
+    //   <TruckCard />
+    //   <View style={styles.bottomBar}>
+    //     <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put some icons here or something</Text>
+    //   </View>
+    // </View>
 
+// Move style code to map screen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -65,3 +87,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   }
 });
+
+
+const App = createAppContainer(switchNavigator);
+
+export default () => {
+  return (
+    <AuthProvider>
+    <App ref={(navigator) => { setNavigator(navigator) }}/>
+    </AuthProvider>
+  )
+}
