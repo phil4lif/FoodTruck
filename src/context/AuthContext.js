@@ -35,9 +35,10 @@ const signupowner = (dispatch) => async ({ username, email, truckname, password 
 };
 
 const signIn = (dispatch) => async ({ username, password }) => {
-  console.log('Attempting to sign in user');
+  console.log('Attempting to sign in user ' + username);
   try {
-    const response = await ftn.post('./api/log-in', { username, password });
+    const response = await ftn.post('/api/login', { username, password });
+    console.log('response: ', response);
     dispatch({ type: 'MapScreen', payload: response });
     navigate('MapScreen');
   } catch (err) {
