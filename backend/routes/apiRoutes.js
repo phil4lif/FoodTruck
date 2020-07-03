@@ -36,11 +36,12 @@ function apiRoutes(app) {
   // POST request for user/owner login
   // TODO - Add functionality
   app.post(
-    '/api/log-in',
-    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/',
-    })
+    '/api/login',
+    (req, res, next) => {
+      console.log('req: ', req);
+      next();
+    },
+    userController.login
   );
 }
 

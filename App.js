@@ -1,42 +1,48 @@
-import React from 'react'
+import * as React from 'react';
+import { Platform, StyleSheet, StatusBar, Text, View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Provider as AuthProvider } from './src/context/AuthContext';
+import { setNavigator } from './src/navigationRef';
 import HomeScreen from './src/screens/HomeScreen';
-import UserRegScreen from './src/screens/UserRegScreen'
+import UserRegScreen from './src/screens/UserRegScreen';
 import OwnerRegScreen from './src/screens/OwnerRegScreen';
-import SigninScreen from './src/screens/SigninScreen';
+import SignInScreen from './src/screens/SignInScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
-import { Provider as AuthProvider } from './src/context/AuthContext'
-import { setNavigator } from './src/navigationRef';
+import MapScreen from './src/screens/MapScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
     Home: HomeScreen,
-    Signin: SigninScreen,
+    SignIn: SignInScreen,
     UserReg: UserRegScreen,
-    OwnerReg: OwnerRegScreen
+    OwnerReg: OwnerRegScreen,
+    Map: MapScreen,
   }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
-    Account: AccountScreen
+    Account: AccountScreen,
+    Map: MapScreen,
   }),
   ownerFlow: createBottomTabNavigator({
     OwnerHome: OwnerHomeScreen,
-    Account: AccountScreen
-  })
+    Account: AccountScreen,
+  }),
 });
-
-
 
 const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
     <AuthProvider>
-    <App ref={(navigator) => { setNavigator(navigator) }}/>
+      <App
+        ref={(navigator) => {
+          setNavigator(navigator);
+        }}
+      />
     </AuthProvider>
-  )
-}
+  );
+};
