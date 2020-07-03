@@ -1,0 +1,44 @@
+[
+    {
+        "_id": "1",
+        "truckname": "Taco Man",
+        "image": "https://picsum.photos/200",
+        "location": ""
+    },
+    {   
+        "_id": "2",
+        "truckname": "Taco Man",
+        "image": "https://picsum.photos/200",
+        "location": ""
+    },
+    {   
+        "_id": "3",
+        "truckname": "Pizza Man",
+        "image": "https://picsum.photos/200",
+        "location": ""
+    },
+    {   
+        "_id": "4",
+        "truckname": "Burger Man",
+        "image": "https://picsum.photos/200",
+        "location": ""
+    },
+    {
+        "_id": "5",
+        "truckname": "Elote Man",
+        "image": "https://picsum.photos/200",
+        "location": ""
+    },
+    {
+        "_id": "6",
+        "truckname": "Burrito Man",
+        "image": "https://picsum.photos/200",
+        "location": ""
+    },
+    {
+        "_id": "7",
+        "truckname": "Pasta Man",
+        "image": "https://picsum.photos/200",
+        "location": ""
+    }
+]
