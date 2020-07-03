@@ -6,34 +6,30 @@ import { Context as AuthContext } from '../context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
 
 const UserRegScreen = ({ navigation }) => {
-const { state, signupuser } = useContext(AuthContext);
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Sign up to find and follow your favorite food trucks</Text>
-            <UserRegForm
-                onSubmit={signupuser}
-            />
-            <NavLink
-                routeName="Signin"
-                text="Already Registered? Switch to Sign In" />
-        </View>
-    )
-}
+  const { state, signupuser } = useContext(AuthContext);
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Sign up to find and follow your favorite food trucks</Text>
+      <UserRegForm onSubmit={signupuser} />
+      <NavLink routeName="SignIn" text="Already Registered? Switch to Sign In" />
+    </View>
+  );
+};
 
 UserRegScreen.navigationOptions = () => {
-    return {
-        header: () => false,
-    };
-}
+  return {
+    header: () => false,
+  };
+};
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginBottom: 200,
-        justifyContent: 'center'
-    },
-    text: {
-        fontSize: 24,
-        alignSelf: 'center'
-    }
-})
+  container: {
+    flex: 1,
+    marginBottom: 200,
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 24,
+    alignSelf: 'center',
+  },
+});
 export default UserRegScreen;

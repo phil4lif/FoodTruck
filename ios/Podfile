@@ -37,6 +37,7 @@ target 'FoodTruckApp' do
   pod 'Folly', :podspec => "#{rnPrefix}/third-party-podspecs/Folly.podspec"
 
   # Other native modules
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   # Automatically detect installed unimodules
   use_unimodules!

@@ -82,3 +82,27 @@ module.exports.create = [
     }
   },
 ];
+
+module.exports.login = (req, res, next) => {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.json('Incorrect username or password');
+    }
+    // Success; log in
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      const response = { user: user, b2Credentials: res.locals.credentials };
+
+      // Send user info back to client as JSON
+      // res.status(200).json(response);
+      // return res.redirect(client + '/private-space');
+      console.log('req.session (inside login logic): ', req.session);
+      res.json('Login successful');
+    });
+  })(req, res, next);
+};
