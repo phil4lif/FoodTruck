@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import TopSpacer from '../components/TopSpacer';
 import trucks from '../trucks.json';
@@ -8,16 +8,15 @@ import { FontAwesome } from '@expo/vector-icons';
 const BrowseTrucksScreen = ({ navigation }) => {
     const results = trucks
     const _id = navigation.getParam('_id')
-    
+
     return (
         <SafeAreaView>
-        <View>
-            <TopSpacer />
-            <Text></Text>
-            <ScrollView>
-                <TrucksList results={results} title="All Food Trucks On the Network" />
-            </ScrollView>
-        </View>
+            <View>
+                <Text></Text>
+                <ScrollView>
+                    <TrucksList results={results} title="All Food Trucks On the Network" />
+                </ScrollView>
+            </View>
         </SafeAreaView>
     )
 };
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 5
     },
-    textStyle : {
+    textStyle: {
         fontSize: 20,
         fontWeight: 'bold',
         marginVertical: 10
