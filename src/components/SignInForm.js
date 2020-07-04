@@ -13,7 +13,6 @@ const SignInForm = ({ onSubmit }) => {
         value={username}
         onChangeText={(text) => setUsername(text)}
       />
-
       <Text style={styles.labelStyle}>Password</Text>
       <TextInput
         secureTextEntry
