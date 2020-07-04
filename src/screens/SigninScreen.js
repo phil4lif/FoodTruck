@@ -10,7 +10,7 @@ const SignInScreen = ({ navigation }) => {
     <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
       <Text style={{ fontSize: 48 }}>SignInScreen</Text>
       <SignInForm onSubmit={signIn} />
-      <NavLink routeName="" text="Not Registered? Switch to Sign In" />
+      <NavLink routeName="Home" text="Not Registered? Switch to Registraition" />
     </ImageBackground>
   );
 };

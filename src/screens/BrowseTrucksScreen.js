@@ -5,9 +5,7 @@ import trucks from '../trucks.json';
 import TrucksList from '../components/TrucksList';
 
 const BrowseTrucksScreen = ({ navigation }) => {
-    // console.log(trucks)
     const results = trucks
-    // console.log(results)
     const _id = navigation.getParam('_id')
     
     return (

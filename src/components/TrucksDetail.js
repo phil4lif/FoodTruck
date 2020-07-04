@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
 const TrucksDetail = ({ result }) => {
-    console.log(result)
 return (
     <View style={styles.containerStyle}>
         <Image source={{ uri: result.image }}
