@@ -12,13 +12,8 @@ import SignInScreen from './src/screens/SignInScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
-<<<<<<< HEAD
-import { Provider as AuthProvider } from './src/context/AuthContext'
-import { setNavigator } from './src/navigationRef';
-import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
-=======
 import MapScreen from './src/screens/MapScreen';
->>>>>>> 4b3f38545540bb69a08eff864b1292e728e5a40c
+import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -30,13 +25,9 @@ const switchNavigator = createSwitchNavigator({
   }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
-<<<<<<< HEAD
     BrowseTrucks: BrowseTrucksScreen,
-    Account: AccountScreen
-=======
     Account: AccountScreen,
     Map: MapScreen,
->>>>>>> 4b3f38545540bb69a08eff864b1292e728e5a40c
   }),
   ownerFlow: createBottomTabNavigator({
     OwnerHome: OwnerHomeScreen,
