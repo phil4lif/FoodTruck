@@ -20,10 +20,10 @@ passport.use(
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
           // passwords match! log user in
-          /**/ console.log('password correct!');
+          // /**/ console.log('password correct!');
           return done(null, user);
         } else {
-          /**/ console.log('password incorrect...');
+          // /**/ console.log('password incorrect...');
           // passwords do not match!
           return done(null, false, { msg: 'Incorrect password' });
         }
@@ -33,13 +33,13 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  console.log('serialize user: ', user);
+  // console.log('serialize user: ', user);
   done(null, user);
 });
 
 passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => {
-    console.log('deserialize user: ', user);
+    // console.log('deserialize user: ', user);
     done(err, user);
   });
 });

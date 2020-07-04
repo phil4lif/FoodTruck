@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import TopSpacer from '../components/TopSpacer';
-import trucks from '../trucks.json';
 import TrucksList from '../components/TrucksList';
 import { FontAwesome } from '@expo/vector-icons';
+import useResults from '../hooks/useResults';
 
 const BrowseTrucksScreen = ({ navigation }) => {
-    const results = trucks
+    const [searchApi, results, errorMessage] = useResults()
     const _id = navigation.getParam('_id')
 
     return (

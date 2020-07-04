@@ -11,6 +11,7 @@ const TrucksList = ({ title, results, navigation }) => {
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.titleStyle}>{title}</Text>
+            
             <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
