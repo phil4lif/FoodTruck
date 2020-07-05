@@ -17,14 +17,15 @@ import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 import SingleTruckShowScreen from './src/screens/SingleTruckShowScreen';
 
 const switchNavigator = createSwitchNavigator({
-  loginFlow: createStackNavigator({
     Home: HomeScreen,
     SignIn: SignInScreen,
     UserReg: UserRegScreen,
     OwnerReg: OwnerRegScreen,
+    BrowseTrucks: createStackNavigator({
+    BrowseTrucks: BrowseTrucksScreen,
     SingleTruckShow: SingleTruckShowScreen,
+    }),
     // Map: MapScreen,
-  }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
     BrowseTrucks: BrowseTrucksScreen,
