@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, FlatList, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, Button } from 'react-native';
 import ftn from '../api/ftn';
 
 const SingleTruckShowScreen = ({ navigation }) => {
@@ -24,7 +24,7 @@ const SingleTruckShowScreen = ({ navigation }) => {
         <View style={styles.containerStyle}>
             <Text>{result.truckname}</Text>
             <Image style={styles.imageStyle} source={{ uri: result.image}} />
-            
+            <Button title="Add to Favorites"></Button>
         </View>
     )
 };
