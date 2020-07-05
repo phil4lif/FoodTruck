@@ -5,7 +5,7 @@ const UserRegForm = ({ onSubmit }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('')
-    const [truckname, setTruckname] = useState('')
+
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.labelStyle}>User Name</Text>
@@ -37,7 +37,7 @@ const UserRegForm = ({ onSubmit }) => {
                 onChangeText={text => setPassword(text)}
             />
             <Button title="Register"
-                onPress={() => onSubmit({ username, email, password, truckname })}
+                onPress={() => onSubmit({ username, email, password })}
                 style={styles.button}
             />
         </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     image: {
         height: '100%',
-        resizeMode: "cover",
+        resizeMode: 'cover',
         alignItems: 'center'
     },
     input: {

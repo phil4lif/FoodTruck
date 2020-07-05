@@ -6,6 +6,7 @@ const UserRegForm = ({ onSubmit }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('')
+    
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.labelStyle}>User Name</Text>

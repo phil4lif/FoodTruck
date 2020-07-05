@@ -7,13 +7,14 @@ import { Context as AuthContext } from '../context/AuthContext';
 const OwnerRegScreen = ({ navigation }) => {
   const { state, signupowner } = useContext(AuthContext);
   return (
+    <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
     <View style={styles.container}>
-      <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
         <Text style={styles.text}>Register as an owner</Text>
         <OwnerRegForm onSubmit={signupowner} />
         <NavLink routeName="SignIn" text="Already Registered? Switch to Sign In" />
-      </ImageBackground>
     </View>
+    </ImageBackground>
+
   );
 };
 
@@ -25,7 +26,7 @@ OwnerRegScreen.navigationOptions = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 200,
+    // marginBottom: 200,
     justifyContent: 'center',
   },
   image: {
