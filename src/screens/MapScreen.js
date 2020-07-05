@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import TopSpacer from '../components/TopSpacer';
 import Map from '../components/Map.js';
 import TruckCarousel from '../components/TruckCarousel.js';
+import { FontAwesome } from '@expo/vector-icons';
 
 const MapScreen = ({ navigation }) => {
   return (
@@ -23,10 +24,9 @@ const MapScreen = ({ navigation }) => {
   );
 };
 
-MapScreen.navigationOptions = () => {
-  return {
-    header: () => false,
-  };
+MapScreen.navigationOptions = {
+   title: 'Map',
+   tabBarIcon: <FontAwesome name="map" size={20} />
 };
 
 const styles = StyleSheet.create({
