@@ -3,15 +3,19 @@ import { View, StyleSheet, Text, ImageBackground } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import NavLink from '../components/NavLink';
 import SignInForm from '../components/SignInForm';
+import TopSpacer from '../components/TopSpacer';
 
 const SignInScreen = ({ navigation }) => {
   const { state, signIn } = useContext(AuthContext);
   return (
     <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
-      <Text style={{ fontSize: 48 }}>SignInScreen</Text>
-      <SignInForm onSubmit={signIn} />
-      <NavLink routeName="Home" text="Not Registered? Switch to Registraition" />
+    <View style={styles.container}>
+        <Text style={styles.text}>Sign In</Text>
+        <SignInForm onSubmit={signIn} />
+        <NavLink routeName="Home" text="Not Registered? Switch to Registraition" />
+    </View>
     </ImageBackground>
+
   );
 };
 
@@ -22,10 +26,19 @@ SignInScreen.navigationOptions = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // marginTop: 200,
+    justifyContent: 'center',
+  },
   image: {
     height: '100%',
     resizeMode: 'cover',
     alignItems: 'center',
+  },
+  text: {
+    fontSize: 24,
+    alignSelf: 'center',
   },
 });
 

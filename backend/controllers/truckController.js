@@ -2,11 +2,21 @@ const { body, validationResult } = require('express-validator');
 const db = require('../models');
 
 module.exports.getAllTrucks = (req, res, next) => {
-  console.log('controller hit');
+  // console.log('controller hit');
   db.Truck.find({})
   .then(dbModel => res.json(dbModel)) 
   .catch(err => res.status(422).json(err))
 };
+
+module.exports.getTruckById = (req, res, next) => {
+  console.log('Get truck by id controller hit')
+  let id = req.params._id
+  db.Truck.findOne({ _id: id })
+  .then(dbModel => res.json(dbModel))
+  .catch(err => res.status(422).json(err))
+}
+
+
 
 module.exports.getTrucks = (req, res, next) => {
   console.log('Getting trucks...');

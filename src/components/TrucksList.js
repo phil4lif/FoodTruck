@@ -11,7 +11,7 @@ const TrucksList = ({ title, results, navigation }) => {
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.titleStyle}>{title}</Text>
-            
+        
             <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -19,7 +19,7 @@ const TrucksList = ({ title, results, navigation }) => {
             keyExtractor={(result) => result._id}
             renderItem={({ item }) => {
                 return (
-                    <TouchableOpacity onPress={() => navigation.navigate('TrucksShow', { _id: item._id })}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SingleTruckShow', { _id: item._id })}>
                         <TrucksDetail result={item} />
                     </TouchableOpacity>
                 )
