@@ -7,8 +7,8 @@ return (
         <Image source={{ uri: result.image }}
         style={styles.imageStyle} />
         <Text style={styles.name}>{result.truckname}</Text>
-        <Text style={styles.name}>Keywords: {result.foodkeywords[0]}</Text>
-        <Text style={styles.name}>{result._id}</Text>
+        <Text style={styles.name}>Keywords: {result.foodkeywords.join(', ')}</Text>
+        <Text style={styles.name}></Text>
     </View>
 )
 }

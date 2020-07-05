@@ -28,7 +28,6 @@ SignInScreen.navigationOptions = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: 200,
     justifyContent: 'center',
   },
   image: {
