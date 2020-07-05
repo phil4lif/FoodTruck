@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import TopSpacer from '../components/TopSpacer';
+
 const HomeScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
+        <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
+            <View style={styles.container}>
                 <TopSpacer />
                 <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
                     <Text style={styles.buttonStyle}>Sign In</Text>
@@ -16,8 +17,9 @@ const HomeScreen = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('OwnerReg')}>
                     <Text style={styles.buttonStyle}>Register as FoodTruck Owner</Text>
                 </TouchableOpacity>
-            </ImageBackground>
-        </View>
+            </View>
+        </ImageBackground>
+
     )
 }
 
@@ -33,6 +35,8 @@ const styles = StyleSheet.create({
         fontSize: 28,
     },
     container: {
+        alignItems: 'center',
+    justifyContent: 'center',
     },
     image: {
         height: '100%',

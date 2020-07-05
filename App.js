@@ -14,6 +14,7 @@ import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
 import MapScreen from './src/screens/MapScreen';
 import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
+import SingleTruckShowScreen from './src/screens/SingleTruckShowScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -21,7 +22,8 @@ const switchNavigator = createSwitchNavigator({
     SignIn: SignInScreen,
     UserReg: UserRegScreen,
     OwnerReg: OwnerRegScreen,
-    Map: MapScreen,
+    SingleTruckShow: SingleTruckShowScreen,
+    // Map: MapScreen,
   }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,

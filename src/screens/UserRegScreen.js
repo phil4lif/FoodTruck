@@ -4,6 +4,7 @@ import UserRegForm from '../components/UserRegForm';
 import NavLink from '../components/NavLink';
 import { Context as AuthContext } from '../context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
+import TopSpacer from '../components/TopSpacer';
 
 const UserRegScreen = ({ navigation }) => {
   const { state, signupuser } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const UserRegScreen = ({ navigation }) => {
     <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
     <View style={styles.container}>
       <Text style={styles.text}>Sign up to find and follow your favorite food trucks</Text>
+      <TopSpacer />
       <UserRegForm onSubmit={signupuser} />
       <NavLink routeName="SignIn" text="Already Registered? Switch to Sign In" />
     </View>

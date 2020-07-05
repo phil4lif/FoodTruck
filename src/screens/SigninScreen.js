@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, ImageBackground } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import NavLink from '../components/NavLink';
 import SignInForm from '../components/SignInForm';
+import TopSpacer from '../components/TopSpacer';
 
 const SignInScreen = ({ navigation }) => {
   const { state, signIn } = useContext(AuthContext);

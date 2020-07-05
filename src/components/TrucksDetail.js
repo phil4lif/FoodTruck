@@ -8,6 +8,7 @@ return (
         style={styles.imageStyle} />
         <Text style={styles.name}>{result.truckname}</Text>
         <Text style={styles.name}>Keywords: {result.foodkeywords[0]}</Text>
+        <Text style={styles.name}>{result._id}</Text>
     </View>
 )
 }

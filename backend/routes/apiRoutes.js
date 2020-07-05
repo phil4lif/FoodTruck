@@ -27,7 +27,7 @@ function apiRoutes(app) {
 
   // GET request for all trucks
   app.get('/api/trucks', truckController.getAllTrucks);
-
+  app.get('/api/trucks/:_id', truckController.getTruckById)
   // POST requests to create users and truck owners
   app.post('/api/create-user', userController.create);
   app.post('/api/create-owner', ownerController.create);
