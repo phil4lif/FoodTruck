@@ -8,39 +8,38 @@ const UserRegForm = ({ onSubmit }) => {
     const [truckname, setTruckname] = useState('')
     return (
         <View style={styles.containerStyle}>
-                <Text style={styles.labelStyle}>User Name</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="User Name"
-                    value={username}
-                    onChangeText={text => setUsername(text)}
-                />
-                <Text style={styles.labelStyle}>Email</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    value={email}
-                    onChangeText={text => setEmail(text)}
-                />
-                <Text style={styles.labelStyle}>Name of foodtruck</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Truck Name"
-                    value={truckname}
-                    onChangeText={text => setTruckname(text)}
-                />
-                <Text style={styles.labelStyle}>Password</Text>
-                <TextInput
-                    secureTextEntry
-                    style={styles.input}
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={text => setPassword(text)}
-                />
-                <Button title="Register"
-                onPress={() => onSubmit({ username, email, password, truckname})}
-                    style={styles.button}
-                />
+            <Text style={styles.labelStyle}>User Name</Text>
+            <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}
+                placeholder="User Name"
+                value={username}
+                onChangeText={text => setUsername(text)}
+            />
+            <Text style={styles.labelStyle}>Email</Text>
+            <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}
+                placeholder="Email"
+                value={email}
+                onChangeText={text => setEmail(text)}
+            />
+            <Text style={styles.labelStyle}>Password</Text>
+            <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                secureTextEntry
+                style={styles.input}
+                placeholder="Password"
+                value={password}
+                onChangeText={text => setPassword(text)}
+            />
+            <Button title="Register"
+                onPress={() => onSubmit({ username, email, password, truckname })}
+                style={styles.button}
+            />
         </View>
     )
 }

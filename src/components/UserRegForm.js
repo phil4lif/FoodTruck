@@ -9,37 +9,43 @@ const UserRegForm = ({ onSubmit }) => {
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.labelStyle}>User Name</Text>
-            <TextInput 
-            style={styles.input}
-             placeholder="User Name"
-             value={username}
-             onChangeText={text => setUsername(text)}
-              />
+            <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}
+                placeholder="User Name"
+                value={username}
+                onChangeText={text => setUsername(text)}
+            />
             <Text style={styles.labelStyle}>Email</Text>
-            <TextInput 
-            style={styles.input}
-            placeholder="Email"
-            value={email}
-            onChangeText={text => setEmail(text)}
-             />
+            <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                style={styles.input}
+                placeholder="Email"
+                value={email}
+                onChangeText={text => setEmail(text)}
+            />
             <Text style={styles.labelStyle}>Password</Text>
-            <TextInput 
-            secureTextEntry
-            style={styles.input}
-            placeholder="Password"
-            value={password}
-            onChangeText={text => setPassword(text)}
-             />
+            <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                secureTextEntry
+                style={styles.input}
+                placeholder="Password"
+                value={password}
+                onChangeText={text => setPassword(text)}
+            />
             <Button title="Register"
-            style={styles.button}
-            onPress={() => onSubmit({ username, email, password })}
+                style={styles.button}
+                onPress={() => onSubmit({ username, email, password })}
             />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    containerStyle:{
+    containerStyle: {
         alignItems: 'center'
     },
     labelStyle: {

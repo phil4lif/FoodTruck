@@ -22,7 +22,7 @@ const signupuser = (dispatch) => async ({ username, email, password }) => {
   }
 };
 
-const signupowner = (dispatch) => async ({ username, email, truckname, password }) => {
+const signupowner = (dispatch) => async ({ username, email, password }) => {
   try {
     const response = await ftn.post('/api/create-owner', { username, password });
     dispatch({ type: 'SignIn', payload: response });
