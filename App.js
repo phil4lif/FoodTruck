@@ -18,11 +18,12 @@ import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 import SingleTruckShowScreen from './src/screens/SingleTruckShowScreen';
 
 const switchNavigator = createSwitchNavigator({
-    Home: HomeScreen,
-    SignIn: SignInScreen,
-    UserReg: UserRegScreen,
-    OwnerReg: OwnerRegScreen,
-    userFlow: createBottomTabNavigator({
+  Splash: SplashScreen,
+  Home: HomeScreen,
+  SignIn: SignInScreen,
+  UserReg: UserRegScreen,
+  OwnerReg: OwnerRegScreen,
+  userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
     BrowseTrucks: createStackNavigator({
       BrowseTrucks: BrowseTrucksScreen,
@@ -38,25 +39,8 @@ const switchNavigator = createSwitchNavigator({
 });
 
 const App = createAppContainer(switchNavigator);
-// const Stack = createStackNavigator();
 
 export default () => {
-  //   console.log('test')
-  //   const [creds, setCreds] = useState(null);
-  //   const [isSignIn, setIsSignIn] = useState(false);
-  //   const [checkingCreds, setCheckingCreds] = useState(true);
-
-  //   React.useEffect(() => {
-  //     const credsOk = true;
-  //     console.log('credsOk: ', credsOk);
-  //     if (credsOk) {
-  //       setIsSignIn(true);
-  //     }
-  //   }, []);
-
-  //   console.log('checkingCreds: ', checkingCreds);
-  //   if (checkingCreds) return <SplashScreen />;
-
   return (
     <AuthProvider>
       <App
@@ -67,51 +51,3 @@ export default () => {
     </AuthProvider>
   );
 };
-
-// export default () => {
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [userCreds, setUserCreds] = useState(null);
-//   const [isSignout, setIsSignout] = useState(true);
-
-//   // if (isLoading) {
-//   //   return <SplashScreen />;
-//   // }
-
-//   React.useEffect(() => {
-//     const getLocalCreds = async () => {
-//       let userCreds;
-//       try {
-//         userCreds = await AsyncStorage.getItem('userCreds');
-//         console.log('userCreds: ', userCreds);
-//         setIsLoading(false)
-//       } catch (err) {
-//         console.log('Restoring user creds failed');
-//       }
-//       dispatchEvent({ type: 'RestoreToken', creds: userCreds });
-//     };
-
-//     getLocalCreds();
-//   });
-
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         {userCreds == null ? (
-//           <>
-//             <Stack.Screen
-//               name="SignIn"
-//               component={SignInScreen}
-//               options={{
-//                 title: 'Sign in',
-//                 animationTypeForReplace: isSignout ? 'pop' : 'push',
-//               }}
-//             />
-//             <Stack.Screen name="UserReg" component={UserRegScreen} />
-//           </>
-//         ) : (
-//           <Stack.Screen name="UserHome" component={UserHomeScreen} />
-//         )}
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// };

@@ -38,7 +38,6 @@ function apiRoutes(app) {
   app.post(
     '/api/login',
     (req, res, next) => {
-      console.log('req: ', req);
       next();
     },
     userController.login

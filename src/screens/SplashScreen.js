@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigate } from '../navigationRef';
 
@@ -9,21 +9,18 @@ const SplashScreen = (dispatch) => {
       let userCreds;
       try {
         userCreds = await AsyncStorage.getItem('creds');
-        console.log('userCreds: ', userCreds);
-        dispatch({ type: 'SignIn', payload: userCreds });
-        navigate('UserHome');
+        userCreds ? navigate('UserHome') : navigate('Home');
       } catch (err) {
-        console.log('Restoring user creds failed');
+        console.log('Restoring user creds failed: ', err);
       }
-      // dispatch({ type: 'RestoreToken', creds: userCreds });
     };
 
     getLocalCreds();
   });
 
   return (
-    <View>
-      <Text style={{ margin: 'auto' }}>Splash Screen</Text>
+    <View style={{ flex: 1, justifyContent: 'center' }}>
+      <ActivityIndicator size="large" color="#000" />
     </View>
   );
 };

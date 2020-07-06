@@ -56,9 +56,8 @@ const signupowner = (dispatch) => async ({ username, email, password }) => {
 const signIn = (dispatch) => async ({ username, password }) => {
   try {
     const response = await ftn.post('/api/login', { username, password });
-    const creds = JSON.stringify(response.config.data);
+    const creds = response.config.data;
     await AsyncStorage.setItem('creds', creds);
-    console.log('response: ', creds);
     dispatch({ type: 'SignIn', payload: response.data.token });
     navigate('UserHome');
   } catch (err) {
@@ -67,27 +66,22 @@ const signIn = (dispatch) => async ({ username, password }) => {
   }
 };
 
-const tryLocalSignIn = (dispatch) => async () => {
+const logout = (dispatch) => async () => {
+    console.log('logout')
   try {
-    const creds = await AsyncStorage.getItem('creds');
-    console.log('creds: ', creds);
-    creds != null ? JSON.parse(creds) : null;
-    if (creds) {
-      dispatch({ type: 'SignIn', payload: creds });
-      navigate('UserHome');
-    } else {
-      navigate('SignIn');
-    }
-    console.log('response: ', response);
-    dispatch({ type: 'SignIn', payload: response });
-    navigate('UserHome');
+    // const response = await ftn.post('/api/logout');
+    await AsyncStorage.removeItem('creds', (err) => {
+      console.log(err);
+    });
+    navigate('Home');
   } catch (err) {
-    console.log('Error: ', err);
+    console.log('err: ', err);
+    dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });
   }
 };
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signupuser, signupowner, signIn, tryLocalSignIn },
+  { signupuser, signupowner, signIn, logout },
   {}
 );
