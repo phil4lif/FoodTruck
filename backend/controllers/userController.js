@@ -59,7 +59,7 @@ module.exports.create = [
           console.log('::' + errors.array()[i].param + ': ' + errors.array()[i].msg);
         }
       }
-      res.json(errors.array());
+      res.json(errors.array()[0].msg);
 
       next();
     }

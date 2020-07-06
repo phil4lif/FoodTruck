@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Alert } from 'react-native';
 import createDataContext from './createDataContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigate } from '../navigationRef';
@@ -15,7 +16,7 @@ const fillAsyncStorage = async (response) => {
   // User was not found (response.data.id == null)
   else {
     console.log('User not found with those credentials: ', response.data);
-    navigate('SignIn', { errorMessage: response.data });
+    navigate('SignIn');
   }
 };
 
@@ -39,9 +40,14 @@ const authReducer = (state, action) => {
 const signupuser = (dispatch) => async ({ username, email, password }) => {
   try {
     const response = await ftn.post('/api/create-user', { username, email, password });
-    fillAsyncStorage(response);
-    dispatch({ type: 'SignIn', payload: response });
-    navigate('UserHome');
+    if (response.data.id) {
+      fillAsyncStorage(response);
+      dispatch({ type: 'SignIn', payload: response });
+      navigate('UserHome');
+    } else {
+      Alert.alert('Registration error', response.data);
+      // navigate('UserReg');
+    }
   } catch (err) {
     dispatch({ type: 'add_error', payload: 'Something went wrong' });
   }
@@ -50,8 +56,12 @@ const signupuser = (dispatch) => async ({ username, email, password }) => {
 const signupowner = (dispatch) => async ({ username, email, password }) => {
   try {
     const response = await ftn.post('/api/create-owner', { username, password });
-    dispatch({ type: 'SignIn', payload: response });
-    navigate('OwnerHome');
+    if (response.data.id) {
+      dispatch({ type: 'SignIn', payload: response });
+      navigate('OwnerHome');
+    } else {
+      Alert.alert('Registration error', response.data);
+    }
   } catch (err) {
     dispatch({ type: 'add_error', payload: 'Something went wrong' });
   }

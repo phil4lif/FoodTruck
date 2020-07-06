@@ -10,7 +10,7 @@ const HomeScreen = ({ navigation }) => {
     <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
       <View style={styles.container}>
         <TopSpacer />
-        <TouchableOpacity onPress={() => navigation.navigate('SignIn', { errorMessage: null })}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn', { errorMessage: 'test' })}>
           <Text style={styles.buttonStyle}>Sign In</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('UserReg')}>
