@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
+import SplashScreen from './src/screens/SplashScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import UserRegScreen from './src/screens/UserRegScreen';
 import OwnerRegScreen from './src/screens/OwnerRegScreen';
@@ -12,16 +13,14 @@ import SignInScreen from './src/screens/SignInScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
-<<<<<<< HEAD
-import { Provider as AuthProvider } from './src/context/AuthContext'
-import { setNavigator } from './src/navigationRef';
 import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
-=======
 import MapScreen from './src/screens/MapScreen';
->>>>>>> 4b3f38545540bb69a08eff864b1292e728e5a40c
+
+// const Stack = createStackNavigator();
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
+    Splash: SplashScreen,
     Home: HomeScreen,
     SignIn: SignInScreen,
     UserReg: UserRegScreen,
@@ -30,13 +29,9 @@ const switchNavigator = createSwitchNavigator({
   }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
-<<<<<<< HEAD
     BrowseTrucks: BrowseTrucksScreen,
-    Account: AccountScreen
-=======
     Account: AccountScreen,
     Map: MapScreen,
->>>>>>> 4b3f38545540bb69a08eff864b1292e728e5a40c
   }),
   ownerFlow: createBottomTabNavigator({
     OwnerHome: OwnerHomeScreen,
@@ -45,8 +40,25 @@ const switchNavigator = createSwitchNavigator({
 });
 
 const App = createAppContainer(switchNavigator);
+// const Stack = createStackNavigator();
 
 export default () => {
+  //   console.log('test')
+  //   const [creds, setCreds] = useState(null);
+  //   const [isSignIn, setIsSignIn] = useState(false);
+  //   const [checkingCreds, setCheckingCreds] = useState(true);
+
+  //   React.useEffect(() => {
+  //     const credsOk = true;
+  //     console.log('credsOk: ', credsOk);
+  //     if (credsOk) {
+  //       setIsSignIn(true);
+  //     }
+  //   }, []);
+
+  //   console.log('checkingCreds: ', checkingCreds);
+  //   if (checkingCreds) return <SplashScreen />;
+
   return (
     <AuthProvider>
       <App
@@ -57,3 +69,51 @@ export default () => {
     </AuthProvider>
   );
 };
+
+// export default () => {
+//   const [isLoading, setIsLoading] = useState(true);
+//   const [userCreds, setUserCreds] = useState(null);
+//   const [isSignout, setIsSignout] = useState(true);
+
+//   // if (isLoading) {
+//   //   return <SplashScreen />;
+//   // }
+
+//   React.useEffect(() => {
+//     const getLocalCreds = async () => {
+//       let userCreds;
+//       try {
+//         userCreds = await AsyncStorage.getItem('userCreds');
+//         console.log('userCreds: ', userCreds);
+//         setIsLoading(false)
+//       } catch (err) {
+//         console.log('Restoring user creds failed');
+//       }
+//       dispatchEvent({ type: 'RestoreToken', creds: userCreds });
+//     };
+
+//     getLocalCreds();
+//   });
+
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator>
+//         {userCreds == null ? (
+//           <>
+//             <Stack.Screen
+//               name="SignIn"
+//               component={SignInScreen}
+//               options={{
+//                 title: 'Sign in',
+//                 animationTypeForReplace: isSignout ? 'pop' : 'push',
+//               }}
+//             />
+//             <Stack.Screen name="UserReg" component={UserRegScreen} />
+//           </>
+//         ) : (
+//           <Stack.Screen name="UserHome" component={UserHomeScreen} />
+//         )}
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// };

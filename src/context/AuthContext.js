@@ -1,16 +1,37 @@
+import * as React from 'react';
 import createDataContext from './createDataContext';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { navigate } from '../navigationRef';
 import ftn from '../api/ftn';
 
 const authReducer = (state, action) => {
   switch (action.type) {
+    case 'RestoreCreds':
+      return {
+        // ...prevState,
+      };
     case 'SignIn':
-      return { errorMessage: '', response: action.payload };
+      return {
+        // ...prevState,
+        errorMessage: '',
+        response: action.payload,
+        isSignout: false,
+        userCreds: action.creds,
+      };
     case 'add_error':
-      return { errorMessage: action.payload };
+      return {
+        // ...prevState,
+        errorMessage: '',
+        isSignout: true,
+        userCreds: null,
+      };
+    case 'add_error':
+      return {
+        errorMessage: action.payload,
+      };
   }
 };
+
 const signupuser = (dispatch) => async ({ username, email, password }) => {
   console.log(username, email, password);
   try {
@@ -38,12 +59,35 @@ const signIn = (dispatch) => async ({ username, password }) => {
   console.log('Attempting to sign in user ' + username);
   try {
     const response = await ftn.post('/api/login', { username, password });
-    console.log('response: ', response);
-    dispatch({ type: 'SignIn', payload: response });
-    navigate('Map');
+    const creds = JSON.stringify(response.config.data);
+    await AsyncStorage.setItem('creds', creds);
+    console.log('response: ', creds);
+    dispatch({ type: 'SignIn', payload: response.data.token });
+    navigate('UserHome');
   } catch (err) {
-    dispatch({ type: 'add-error', payload: 'Something went wrong' });
+    console.log('err: ', err);
+    dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });
   }
 };
 
-export const { Provider, Context } = createDataContext(authReducer, { signupuser, signupowner, signIn }, {});
+const tryLocalSignIn = (dispatch) => async () => {
+  try {
+    const creds = await AsyncStorage.getItem('creds');
+    console.log('creds: ', creds);
+    creds != null ? JSON.parse(creds) : null;
+    if (creds) {
+      dispatch({ type: 'SignIn', payload: creds });
+      navigate('UserHome');
+    } else {
+      navigate('SignIn');
+    }
+  } catch (err) {
+    console.log('Error: ', err);
+  }
+};
+
+export const { Provider, Context } = createDataContext(
+  authReducer,
+  { signupuser, signupowner, signIn, tryLocalSignIn },
+  {}
+);
