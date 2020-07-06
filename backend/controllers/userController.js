@@ -59,7 +59,7 @@ module.exports.create = [
           console.log('::' + errors.array()[i].param + ': ' + errors.array()[i].msg);
         }
       }
-      res.json(errors.array());
+      res.json(errors.array()[0].msg);
 
       next();
     }
@@ -67,7 +67,7 @@ module.exports.create = [
       /**/ console.log('validation passed');
       // Takes req.body.password and hashes it
       // then saves hashed password to db instead of plain text password
-      bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         /**/ console.log('hashing password...');
         if (err) return next(err);
         const newUser = new db.User({
@@ -75,9 +75,17 @@ module.exports.create = [
           password: hashedPassword,
         });
         //   Hashing complete; save to DB
-        db.User.create(newUser);
-        //   Send success msg to client
-        res.send('User ' + newUser.username + ' created');
+        await db.User.create(newUser);
+        // Get new user from DB to respond with id
+        db.User.findOne({ username: newUser.username, password: newUser.password }).then((foundUser) => {
+          //   Send success msg to client
+          console.log('foundUser: ', foundUser);
+          console.log('User ' + foundUser.username + ' created');
+          res.json({
+            username: foundUser.username,
+            id: foundUser._id,
+          });
+        });
       });
     }
   },
@@ -86,6 +94,7 @@ module.exports.create = [
 module.exports.login = (req, res, next) => {
   passport.authenticate('local', function (err, user, info) {
     if (err) {
+      console.log('Login error: ', err);
       return next(err);
     }
     if (!user) {
@@ -96,12 +105,25 @@ module.exports.login = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      const response = { user: user, b2Credentials: res.locals.credentials };
 
       // Send user info back to client as JSON
       // res.status(200).json(response);
       // return res.redirect(client + '/private-space');
-      res.json('Login successful');
+      console.log('Login successful');
+      res.json({
+        username: user.username,
+        id: user._id,
+      });
     });
   })(req, res, next);
+};
+
+module.exports.checkAuth = (req, res, next) => {
+  db.User.findById(req.body.userId).then((foundUser) => {
+    if (foundUser) {
+      res.json(foundUser);
+    } else {
+      res.json(null);
+    }
+  });
 };

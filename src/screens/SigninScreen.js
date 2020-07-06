@@ -9,13 +9,12 @@ const SignInScreen = ({ navigation }) => {
   const { state, signIn } = useContext(AuthContext);
   return (
     <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
-    <View style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.text}>Sign In</Text>
         <SignInForm onSubmit={signIn} />
-        <NavLink routeName="Home" text="Not Registered? Switch to Registraition" />
-    </View>
+        <NavLink routeName="Home" text="Not Registered? Switch to Registration" />
+      </View>
     </ImageBackground>
-
   );
 };
 

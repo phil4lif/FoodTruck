@@ -1,21 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
+import { Context as AuthContext } from '../context/AuthContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigate } from '../navigationRef';
 
 const SplashScreen = (dispatch) => {
+  const { state, checkAuth } = useContext(AuthContext);
+
   React.useEffect(() => {
-    const getLocalCreds = async () => {
-      let userCreds;
+    const getLocalId = async () => {
       try {
-        userCreds = await AsyncStorage.getItem('creds');
-        userCreds ? navigate('UserHome') : navigate('Home');
+        const userId = await AsyncStorage.getItem('id');
+console.log('AsyncStorage userId: ', userId);
+        if (userId) {
+          checkAuth();
+          navigate('UserHome');
+        } else {
+          navigate('Home');
+        }
       } catch (err) {
-        console.log('Restoring user creds failed: ', err);
+        console.log('Restoring user id failed: ', err);
       }
     };
 
-    getLocalCreds();
+    getLocalId();
   });
 
   return (
