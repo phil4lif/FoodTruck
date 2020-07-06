@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { setNavigator } from './src/navigationRef';
+import SplashScreen from './src/screens/SplashScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import UserRegScreen from './src/screens/UserRegScreen';
 import OwnerRegScreen from './src/screens/OwnerRegScreen';
@@ -17,11 +18,12 @@ import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 import SingleTruckShowScreen from './src/screens/SingleTruckShowScreen';
 
 const switchNavigator = createSwitchNavigator({
-    Home: HomeScreen,
-    SignIn: SignInScreen,
-    UserReg: UserRegScreen,
-    OwnerReg: OwnerRegScreen,
-    userFlow: createBottomTabNavigator({
+  Splash: SplashScreen,
+  Home: HomeScreen,
+  SignIn: SignInScreen,
+  UserReg: UserRegScreen,
+  OwnerReg: OwnerRegScreen,
+  userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
     BrowseTrucks: createStackNavigator({
       BrowseTrucks: BrowseTrucksScreen,
