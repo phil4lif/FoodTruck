@@ -21,10 +21,10 @@ const BrowseTrucksScreen = ({ navigation }) => {
     )
 };
 
-BrowseTrucksScreen.navigationOptions = {
-    title: 'Browse',
-    tabBarIcon: <FontAwesome name="search" size={20} color="black" />
-}
+// BrowseTrucksScreen.navigationOptions = {
+//     title: 'Browse',
+//     tabBarIcon: <FontAwesome name="search" size={20} color="black" />
+// }
 const styles = StyleSheet.create({
     containerStyle: {
         alignItems: 'center'
