@@ -32,6 +32,7 @@ function apiRoutes(app) {
   app.post('/api/create-user', userController.create);
   app.post('/api/create-owner', ownerController.create);
   app.post('/api/create-truck', truckController.create);
+  app.put('/api/addfavorite/:userid/:truckid', userController.addFavorite)
 
   // POST request for user/owner login
   app.post('/api/login', userController.login);
