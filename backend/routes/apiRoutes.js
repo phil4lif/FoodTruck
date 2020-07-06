@@ -27,21 +27,16 @@ function apiRoutes(app) {
 
   // GET request for all trucks
   app.get('/api/trucks', truckController.getAllTrucks);
-  app.get('/api/trucks/:_id', truckController.getTruckById)
+  app.get('/api/trucks/:_id', truckController.getTruckById);
   // POST requests to create users and truck owners
   app.post('/api/create-user', userController.create);
   app.post('/api/create-owner', ownerController.create);
   app.post('/api/create-truck', truckController.create);
 
   // POST request for user/owner login
-  // TODO - Add functionality
-  app.post(
-    '/api/login',
-    (req, res, next) => {
-      next();
-    },
-    userController.login
-  );
+  app.post('/api/login', userController.login);
+
+  app.post('/api/check-auth', userController.checkAuth);
 }
 
 module.exports = apiRoutes;

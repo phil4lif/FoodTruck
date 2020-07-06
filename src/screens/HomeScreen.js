@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import TopSpacer from '../components/TopSpacer';
@@ -10,7 +10,7 @@ const HomeScreen = ({ navigation }) => {
     <ImageBackground source={require('../../images/should-wang-ye5T5R0G-GA-unsplash.jpg')} style={styles.image}>
       <View style={styles.container}>
         <TopSpacer />
-        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn', { errorMessage: null })}>
           <Text style={styles.buttonStyle}>Sign In</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('UserReg')}>
