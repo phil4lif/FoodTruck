@@ -5,18 +5,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { navigate } from '../navigationRef';
 import ftn from '../api/ftn';
 
-const fillAsyncStorage = async (response) => {
-  const id = response.data.id;
-  // response.data.id exists (user was found by server)
-  if (id) {
+const fillAsyncStorage = async (id, screen) => {
+  try {
     await AsyncStorage.setItem('id', id);
-    dispatch({ type: 'SignIn', payload: response.data.id });
-    navigate('UserHome');
   }
   // User was not found (response.data.id == null)
-  else {
-    console.log('User not found with those credentials: ', response.data);
-    navigate('SignIn');
+  catch (err) {
+    console.log('err: ', err);
+    navigate(screen);
   }
 };
 
@@ -41,7 +37,7 @@ const signupuser = (dispatch) => async ({ username, email, password }) => {
   try {
     const response = await ftn.post('/api/create-user', { username, email, password });
     if (response.data.id) {
-      fillAsyncStorage(response);
+      fillAsyncStorage(response.data.id, 'UserReg');
       dispatch({ type: 'SignIn', payload: response });
       navigate('UserHome');
     } else {
@@ -70,7 +66,13 @@ const signupowner = (dispatch) => async ({ username, email, password }) => {
 const signIn = (dispatch) => async ({ username, password }) => {
   try {
     const response = await ftn.post('/api/login', { username, password });
-    fillAsyncStorage(response);
+    if (response.data.id) {
+      await fillAsyncStorage(response.data.id, 'SignIn');
+      dispatch({ type: 'SignIn', payload: response.data.id });
+      navigate('UserHome');
+    } else {
+      Alert.alert('Sign in error', response.data);
+    }
   } catch (err) {
     console.log('err: ', err);
     dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });
