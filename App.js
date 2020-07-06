@@ -23,12 +23,13 @@ const switchNavigator = createSwitchNavigator({
   SignIn: SignInScreen,
   UserReg: UserRegScreen,
   OwnerReg: OwnerRegScreen,
+  SingleTruckShow: createStackNavigator({
+    BrowseTrucks: BrowseTrucksScreen,
+    SingleTruckShow: SingleTruckShowScreen
+  }),
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
-    BrowseTrucks: createStackNavigator({
-      BrowseTrucks: BrowseTrucksScreen,
-      SingleTruckShow: SingleTruckShowScreen,
-    }),
+    BrowseTrucks: BrowseTrucksScreen,
     Account: AccountScreen,
     Map: MapScreen,
   }),
