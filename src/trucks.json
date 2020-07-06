@@ -2,43 +2,43 @@
     {
         "_id": "1",
         "truckname": "Taco Man",
-        "image": "https://picsum.photos/200",
+        "image": "https://images.unsplash.com/photo-1519861155730-0b5fbf0dd889?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=563&q=80",
         "location": ""
     },
     {   
         "_id": "2",
-        "truckname": "Taco Man",
-        "image": "https://picsum.photos/200",
+        "truckname": "Sushi Man",
+        "image": "https://images.unsplash.com/photo-1589273429273-633bbf47a407?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=375&q=80",
         "location": ""
     },
     {   
         "_id": "3",
         "truckname": "Pizza Man",
-        "image": "https://picsum.photos/200",
+        "image": "https://images.unsplash.com/photo-1551888797-e7d1f43d28c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         "location": ""
     },
     {   
         "_id": "4",
         "truckname": "Burger Man",
-        "image": "https://picsum.photos/200",
+        "image": "https://images.unsplash.com/photo-1508424897381-4fd8755e4b7a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=375&q=80",
         "location": ""
     },
     {
         "_id": "5",
         "truckname": "Elote Man",
-        "image": "https://picsum.photos/200",
+        "image": "https://images.unsplash.com/photo-1531950110602-9c09c9102fdf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
         "location": ""
     },
     {
         "_id": "6",
         "truckname": "Burrito Man",
-        "image": "https://picsum.photos/200",
+        "image": "https://images.unsplash.com/photo-1592422301197-39e67a71bc37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
         "location": ""
     },
     {
         "_id": "7",
         "truckname": "Pasta Man",
-        "image": "https://picsum.photos/200",
+        "image": "https://images.unsplash.com/photo-1547567497-fa0a1720f457?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
         "location": ""
     }
 ]

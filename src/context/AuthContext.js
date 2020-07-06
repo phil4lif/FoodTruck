@@ -33,7 +33,6 @@ const authReducer = (state, action) => {
 };
 
 const signupuser = (dispatch) => async ({ username, email, password }) => {
-  console.log(username, email, password);
   try {
     const response = await ftn.post('/api/create-user', { username, email, password });
     // await AsyncStorage.setItem('token', response.data.token);
@@ -44,8 +43,7 @@ const signupuser = (dispatch) => async ({ username, email, password }) => {
   }
 };
 
-const signupowner = (dispatch) => async ({ username, email, truckname, password }) => {
-  console.log(username, email, truckname, password);
+const signupowner = (dispatch) => async ({ username, email, password }) => {
   try {
     const response = await ftn.post('/api/create-owner', { username, password });
     dispatch({ type: 'SignIn', payload: response });
@@ -56,7 +54,6 @@ const signupowner = (dispatch) => async ({ username, email, truckname, password 
 };
 
 const signIn = (dispatch) => async ({ username, password }) => {
-  console.log('Attempting to sign in user ' + username);
   try {
     const response = await ftn.post('/api/login', { username, password });
     const creds = JSON.stringify(response.config.data);
@@ -81,6 +78,9 @@ const tryLocalSignIn = (dispatch) => async () => {
     } else {
       navigate('SignIn');
     }
+    console.log('response: ', response);
+    dispatch({ type: 'SignIn', payload: response });
+    navigate('UserHome');
   } catch (err) {
     console.log('Error: ', err);
   }

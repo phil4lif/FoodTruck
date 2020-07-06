@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
 const TrucksDetail = ({ result }) => {
-    console.log(result)
 return (
     <View style={styles.containerStyle}>
         <Image source={{ uri: result.image }}
         style={styles.imageStyle} />
-        <Text style={StyleSheet.name}>{result.truckname}</Text>
+        <Text style={styles.name}>{result.truckname}</Text>
+        <Text style={styles.name}>Keywords: {result.foodkeywords.join(', ')}</Text>
+        <Text style={styles.name}></Text>
     </View>
 )
 }
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     containerStyle: {
-        height: 200,
+        height: 250,
         width: 200,
         marginLeft: 15,
 

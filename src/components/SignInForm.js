@@ -8,14 +8,17 @@ const SignInForm = ({ onSubmit }) => {
     <View style={styles.containerStyle}>
       <Text style={styles.labelStyle}>Username</Text>
       <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
         style={styles.input}
         placeholder="Username"
         value={username}
         onChangeText={(text) => setUsername(text)}
       />
-
       <Text style={styles.labelStyle}>Password</Text>
       <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
         secureTextEntry
         style={styles.input}
         placeholder="Password"

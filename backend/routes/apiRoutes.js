@@ -4,7 +4,7 @@ const ownerController = require('../controllers/ownerController');
 const userController = require('../controllers/userController');
 const truckController = require('../controllers/truckController');
 
-const { User } = require('../models');
+const { User, Truck } = require('../models');
 
 // GET requests for user and owner accounts
 function apiRoutes(app) {
@@ -26,8 +26,8 @@ function apiRoutes(app) {
   });
 
   // GET request for all trucks
-  app.get('/api/trucks', truckController.getTrucks);
-
+  app.get('/api/trucks', truckController.getAllTrucks);
+  app.get('/api/trucks/:_id', truckController.getTruckById)
   // POST requests to create users and truck owners
   app.post('/api/create-user', userController.create);
   app.post('/api/create-owner', ownerController.create);

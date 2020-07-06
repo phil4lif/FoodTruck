@@ -13,23 +13,21 @@ import SignInScreen from './src/screens/SignInScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import UserHomeScreen from './src/screens/UserHomeScreen';
 import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
-import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 import MapScreen from './src/screens/MapScreen';
-
-// const Stack = createStackNavigator();
+import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
+import SingleTruckShowScreen from './src/screens/SingleTruckShowScreen';
 
 const switchNavigator = createSwitchNavigator({
-  loginFlow: createStackNavigator({
-    Splash: SplashScreen,
     Home: HomeScreen,
     SignIn: SignInScreen,
     UserReg: UserRegScreen,
     OwnerReg: OwnerRegScreen,
-    Map: MapScreen,
-  }),
-  userFlow: createBottomTabNavigator({
+    userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
-    BrowseTrucks: BrowseTrucksScreen,
+    BrowseTrucks: createStackNavigator({
+      BrowseTrucks: BrowseTrucksScreen,
+      SingleTruckShow: SingleTruckShowScreen,
+    }),
     Account: AccountScreen,
     Map: MapScreen,
   }),
