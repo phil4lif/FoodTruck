@@ -26,6 +26,7 @@ const SingleTruckShowScreen = ({ navigation }) => {
             <Image style={styles.imageStyle} source={{ uri: result.image }} />
             <Text>otherphotos</Text>
             <FlatList
+                horizontal
                 data={result.otherphotos}
                 keyExtractor={(photo) => photo}
                 renderItem={({ item }) => {
