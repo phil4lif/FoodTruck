@@ -16,14 +16,21 @@ const SingleTruckShowScreen = ({ navigation }) => {
     useEffect(() => {
         getResult(_id);
     }, []);
-    if (!result){
+    if (!result) {
         return null
     }
-    
+
     return (
         <View style={styles.containerStyle}>
             <Text>{result.truckname}</Text>
-            <Image style={styles.imageStyle} source={{ uri: result.image}} />
+            <Image style={styles.imageStyle} source={{ uri: result.image }} />
+            <Text>otherphotos</Text>
+            <FlatList
+                data={result.otherphotos}
+                keyExtractor={(photo) => photo}
+                renderItem={({ item }) => {
+                    return <Image style={styles.imageStyle} source={{ uri: item }} />
+                }} />
             <Button title="Add to Favorites"></Button>
         </View>
     )
@@ -32,7 +39,7 @@ const SingleTruckShowScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     containerStyle: {
         alignItems: 'center',
-        // height: 800
+        height: 600
     },
     imageStyle: {
         height: 300,
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderRadius: 5
     },
-    textStyle : {
+    textStyle: {
         fontSize: 20,
         fontWeight: 'bold',
         marginVertical: 10
