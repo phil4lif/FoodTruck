@@ -67,6 +67,7 @@ const signIn = (dispatch) => async ({ username, password }) => {
   try {
     const response = await ftn.post('/api/login', { username, password });
     if (response.data.id) {
+      console.log(response.data.id)
       await fillAsyncStorage(response.data.id, 'SignIn');
       dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('UserHome');

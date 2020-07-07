@@ -34,9 +34,10 @@ const switchNavigator = createSwitchNavigator({
   OwnerReg: OwnerRegScreen,
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
-    truckViewFlow,   
+    truckViewFlow,  
+    Map: MapScreen, 
     Account: AccountScreen,
-    Map: MapScreen,
+
   }),
   ownerFlow: createBottomTabNavigator({
     OwnerHome: OwnerHomeScreen,
