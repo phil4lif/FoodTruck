@@ -17,7 +17,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.buttonStyle}>Register</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('OwnerReg')}>
-          <Text style={styles.buttonStyle}>Register as FoodTruck Owner</Text>
+          <Text style={styles.buttonStyle}>Register as Food Truck Owner</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

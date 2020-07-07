@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, FlatList, Button } from 'react-native';
 import ftn from '../api/ftn';
+import AddToFavoritesButton from '../components/AddToFavoritesButton'
 
 const SingleTruckShowScreen = ({ navigation }) => {
     const [result, setResult] = useState(null)
@@ -32,14 +33,13 @@ const SingleTruckShowScreen = ({ navigation }) => {
                 renderItem={({ item }) => {
                     return <Image style={styles.imageStyle} source={{ uri: item }} />
                 }} />
-            <Button title="Add to Favorites"></Button>
+            <AddToFavoritesButton truckid={_id} />
         </View>
     )
 };
 
 SingleTruckShowScreen.navigationOptions = {
-    title: 'Taco Man'
-
+    title: 'Taco Man',
 }
 
 const styles = StyleSheet.create({

@@ -22,7 +22,8 @@ const BrowseTrucksScreen = ({ navigation }) => {
 };
 
 BrowseTrucksScreen.navigationOptions = {
-    title: 'Browse All Trucks',
+    title: 'Browse',
+    header: false,
     tabBarIcon: <FontAwesome name="search" size={20} color="black" />
 }
 const styles = StyleSheet.create({
