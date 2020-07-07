@@ -16,7 +16,7 @@ module.exports = {
     console.log('controller hit')
     let userid = req.params.userid;
     let truckid = req.params.truckid;
-    return db.User.findOneAndUpdate({ _id: userid }, {$push: {favorites: truckid}})
+    return db.User.findOneAndUpdate({ _id: userid }, {$push: {favorites: truckid}, new: true})
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err))
   }

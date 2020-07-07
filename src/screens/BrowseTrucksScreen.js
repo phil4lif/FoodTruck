@@ -14,17 +14,17 @@ const BrowseTrucksScreen = ({ navigation }) => {
             <View>
                 <Text></Text>
                 <ScrollView>
-                    <TrucksList results={results} title="All Food Trucks On the Network" />
+                    <TrucksList results={results} />
                 </ScrollView>
             </View>
         </SafeAreaView>
     )
 };
 
-// BrowseTrucksScreen.navigationOptions = {
-//     title: 'Browse',
-//     tabBarIcon: <FontAwesome name="search" size={20} color="black" />
-// }
+BrowseTrucksScreen.navigationOptions = {
+    title: 'Browse All Trucks',
+    tabBarIcon: <FontAwesome name="search" size={20} color="black" />
+}
 const styles = StyleSheet.create({
     containerStyle: {
         alignItems: 'center'

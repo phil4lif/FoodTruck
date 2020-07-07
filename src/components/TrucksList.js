@@ -11,19 +11,18 @@ const TrucksList = ({ title, results, navigation }) => {
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.titleStyle}>{title}</Text>
-        
             <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={results}
-            keyExtractor={(result) => result._id}
-            renderItem={({ item }) => {
-                return (
-                    <TouchableOpacity onPress={() => navigation.navigate('SingleTruckShow', { _id: item._id })}>
-                        <TrucksDetail result={item} />
-                    </TouchableOpacity>
-                )
-            }} />
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={results}
+                keyExtractor={(result) => result._id}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity onPress={() => navigation.navigate('SingleTruckShow', { _id: item._id })}>
+                            <TrucksDetail result={item} />
+                        </TouchableOpacity>
+                    )
+                }} />
         </View>
     )
 }

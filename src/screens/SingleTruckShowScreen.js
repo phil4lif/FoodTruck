@@ -24,7 +24,7 @@ const SingleTruckShowScreen = ({ navigation }) => {
         <View style={styles.containerStyle}>
             <Text>{result.truckname}</Text>
             <Image style={styles.imageStyle} source={{ uri: result.image }} />
-            <Text>otherphotos</Text>
+            <Text>More Photos</Text>
             <FlatList
                 horizontal
                 data={result.otherphotos}
@@ -36,6 +36,11 @@ const SingleTruckShowScreen = ({ navigation }) => {
         </View>
     )
 };
+
+SingleTruckShowScreen.navigationOptions = {
+    title: 'Taco Man'
+
+}
 
 const styles = StyleSheet.create({
     containerStyle: {
