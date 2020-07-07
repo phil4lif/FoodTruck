@@ -16,7 +16,16 @@ import OwnerHomeScreen from './src/screens/OwnerHomeScreen';
 import MapScreen from './src/screens/MapScreen';
 import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 import SingleTruckShowScreen from './src/screens/SingleTruckShowScreen';
+import { FontAwesome } from '@expo/vector-icons';
 
+const truckViewFlow = createStackNavigator({
+  BrowseTrucks: BrowseTrucksScreen,
+  SingleTruckShow: SingleTruckShowScreen
+})
+truckViewFlow.navigationOptions = {
+  title: 'Browse',
+  tabBarIcon: <FontAwesome name="search" size={20} color="black" />
+}
 const switchNavigator = createSwitchNavigator({
   Splash: SplashScreen,
   Home: HomeScreen,
@@ -25,10 +34,7 @@ const switchNavigator = createSwitchNavigator({
   OwnerReg: OwnerRegScreen,
   userFlow: createBottomTabNavigator({
     UserHome: UserHomeScreen,
-    BrowseTrucks: createStackNavigator({
-      BrowseTrucks: BrowseTrucksScreen,
-      SingleTruckShow: SingleTruckShowScreen,
-    }),
+    truckViewFlow,   
     Account: AccountScreen,
     Map: MapScreen,
   }),
