@@ -18,7 +18,7 @@ const TrucksList = ({ title, results, navigation }) => {
                 renderItem={({ item }) => {
                     return (
                         <TouchableOpacity onPress={() => navigation.navigate('SingleTruckShow', { _id: item._id })}>
-                            <TrucksDetail result={item} />
+                            <TrucksDetail  result={item} />
                         </TouchableOpacity>
                     )
                 }} />
@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     },
     containerStyle: {
         marginBottom: 10
-    }
+    },
+
 });
 
 export default withNavigation(TrucksList);

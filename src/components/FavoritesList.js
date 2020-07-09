@@ -3,35 +3,32 @@ import { View, FlatList, Text, Image, StyleSheet, TouchableOpacity } from 'react
 import FavoritesDetail from '../components/FavoritesDetail'
 const FavoritesList = ({ results, navigation }) => {
 
-return (
-<View style={styles.faveContainerStyle}>
-    <Text>Favorites:</Text>
-          <FlatList 
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={results}
-          keyExtractor={(result) => result._id}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity>
-                  <FavoritesDetail result={item} />
-              </TouchableOpacity>
-            )
-          }} 
-          />
+    return (
+        <View style={styles.faveContainerStyle}>
+            <Text>Favorites:</Text>
+            <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={results}
+                keyExtractor={(result) => result._id}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity>
+                            <FavoritesDetail result={item} />
+                        </TouchableOpacity>
+                    )
+                }}
+            />
         </View>
-)
+    )
 }
 
 const styles = StyleSheet.create({
     faveContainerStyle: {
-        borderColor: 'red',
-        borderWidth: 2,
-        height: 200
+        height: 400,
+        marginLeft: 15
     },
     containerStyle: {
-        borderColor: 'red',
-        borderWidth: 2,
     },
     headerStyle: {
         fontSize: 36,

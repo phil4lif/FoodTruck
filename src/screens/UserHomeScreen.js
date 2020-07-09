@@ -18,7 +18,7 @@ const UserHomeScreen = () => {
   }
   const getFavorites = async () => {
       try {
-          const response = await ftn.get(`/api/getfavorite/${userid}`)
+          const response = await ftn.get(`/api/getfavorite/5efff2462a37be57848abcae`)
           setResults(response.data[0].favorites)
       } catch (error) {
           console.log(error)
@@ -44,13 +44,9 @@ const UserHomeScreen = () => {
 
 const styles = StyleSheet.create({
   faveContainerStyle:{
-    borderColor: 'red',
-    borderWidth: 2,
-    height: 200
   },
   containerStyle: {
-    borderColor: 'red',
-    borderWidth: 2,
+  height: 800
   },
   headerStyle: {
     fontSize: 36,
