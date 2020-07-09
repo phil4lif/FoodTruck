@@ -11,7 +11,7 @@ const UserHomeScreen = () => {
   const [results, setResults] = useState([]);
   const { state: { userId } } = useContext(AuthContext);
 
- console.log(userId + 'from userhome')
+//  console.log(userId + 'from userhome')
 
   const getFavorites = async () => {
       try {
@@ -23,7 +23,7 @@ const UserHomeScreen = () => {
   }
   useEffect(() => {
       getFavorites();
-  }, []);
+  }, [userId]);
 
   return (
     <SafeAreaView>
