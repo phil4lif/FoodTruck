@@ -11,6 +11,8 @@ const UserHomeScreen = () => {
   const [results, setResults] = useState([]);
   const { state: { userId } } = useContext(AuthContext);
 
+ console.log(userId + 'from userhome')
+
   const getFavorites = async () => {
       try {
           const response = await ftn.get(`/api/getfavorite/${userId}`)
