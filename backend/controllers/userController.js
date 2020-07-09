@@ -19,6 +19,14 @@ module.exports = {
     return db.User.findOneAndUpdate({ _id: userid }, {$push: {favorites: truckid}, new: true})
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err))
+  },
+  getFavorites : function (req, res, next) {
+    console.log('controller')
+    let userid = req.params.userid;
+    return db.User.find({ _id: userid })
+    .populate("favorites")
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err))
   }
 };
 module.exports.create = [

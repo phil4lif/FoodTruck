@@ -6,13 +6,11 @@ import AddToFavoritesButton from '../components/AddToFavoritesButton'
 const SingleTruckShowScreen = ({ navigation }) => {
     const [result, setResult] = useState(null)
     const _id = navigation.getParam('_id')
-    console.log(result);
 
     const getResult = async (_id) => {
         const response = await ftn.get(`/api/trucks/${_id}`);
         response.data
         setResult(response.data);
-        console.log(result)
     };
     useEffect(() => {
         getResult(_id);
