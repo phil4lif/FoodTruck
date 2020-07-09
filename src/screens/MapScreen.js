@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, ImageBackground } from 'react-native';
+import ftn from '../api/ftn';
 import { SafeAreaView } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import TopSpacer from '../components/TopSpacer';
@@ -13,20 +14,19 @@ const MapScreen = ({ navigation }) => {
       {/* <StatusBar backgroundColor="blue" barStyle="dark-content" /> */}
       <Map />
       <View style={styles.textBox}>
-        <Text style={styles.welcome}>Welcome to Food Truck</Text>
         <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put a search bar here</Text>
       </View>
-      <TruckCarousel />
-      <View style={styles.bottomBar}>
+      {/* <TruckCarousel trucks={trucks} /> */}
+      {/* <View style={styles.bottomBar}>
         <Text style={{ textAlign: 'center', margin: 'auto', color: 'gray' }}>Put some icons here or something</Text>
-      </View>
+      </View> */}
     </View>
   );
 };
 
 MapScreen.navigationOptions = {
-   title: 'Map',
-   tabBarIcon: <FontAwesome name="map" size={20} />
+  title: 'Map',
+  tabBarIcon: <FontAwesome name="map" size={20} />,
 };
 
 const styles = StyleSheet.create({
