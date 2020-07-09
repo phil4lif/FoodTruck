@@ -20,16 +20,15 @@ const authReducer = (state, action) => {
   switch (action.type) {
     case 'SignIn':
       return {
-        errorMessage: '',
-      };
-    case 'add_error':
-      return {
+        userId: action.payload,
         errorMessage: '',
       };
     case 'add_error':
       return {
         errorMessage: action.payload,
       };
+    default:
+      return state;
   }
 };
 
@@ -38,7 +37,7 @@ const signupuser = (dispatch) => async ({ username, email, password }) => {
     const response = await ftn.post('/api/create-user', { username, email, password });
     if (response.data.id) {
       fillAsyncStorage(response.data.id, 'UserReg');
-      dispatch({ type: 'SignIn', payload: response });
+      dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('UserHome');
     } else {
       Alert.alert('Registration error', response.data);
@@ -53,7 +52,7 @@ const signupowner = (dispatch) => async ({ username, email, password }) => {
   try {
     const response = await ftn.post('/api/create-owner', { username, password });
     if (response.data.id) {
-      dispatch({ type: 'SignIn', payload: response });
+      dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('OwnerHome');
     } else {
       Alert.alert('Registration error', response.data);
@@ -97,8 +96,11 @@ const checkAuth = (dispatch) => async () => {
   try {
     const userId = await AsyncStorage.getItem('id');
     console.log('userId: ', userId);
+    if (userId) {
+      dispatch({ type: 'SignIn', payload: userId });
+    }
     const response = await ftn.post('/api/check-auth', { userId: userId });
-    // console.log('response.status: ', response.status);
+    console.log('response.status: ', response.status);
   } catch (err) {
     console.log('err: ', err);
     dispatch({ type: 'add_error', payload: 'Something went wrong with checking user auth' });
@@ -108,5 +110,5 @@ const checkAuth = (dispatch) => async () => {
 export const { Provider, Context } = createDataContext(
   authReducer,
   { signupuser, signupowner, signIn, logout, checkAuth },
-  {}
+  { userId: null, errorMessage: '' }
 );

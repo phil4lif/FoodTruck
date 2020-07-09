@@ -7,7 +7,7 @@ import { navigate } from '../navigationRef';
 const SplashScreen = (dispatch) => {
   const { state, checkAuth } = useContext(AuthContext);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getLocalId = async () => {
       try {
         const userId = await AsyncStorage.getItem('id');

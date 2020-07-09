@@ -2,30 +2,24 @@ import React, { useContext, useEffect, useState } from 'react';
 import { View, StyleSheet, ScrollView, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import TopSpacer from '../components/TopSpacer';
 import { FontAwesome } from '@expo/vector-icons';
-import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import ftn from '../api/ftn'
 import FavoritesList from '../components/FavoritesList';
-import useFavorites from '../hooks/useFavorites';
+import { Context as AuthContext} from '../context/AuthContext'
 
 const UserHomeScreen = () => {
   const [results, setResults] = useState([]);
-  const [userid, setUserid] = useState('')
+  const { state: { userId } } = useContext(AuthContext);
 
-  const getuserid = async () => {
-      setUserid(await AsyncStorage.getItem('id'));
-      console.log(userid + 'from home screen')
-  }
   const getFavorites = async () => {
       try {
-          const response = await ftn.get(`/api/getfavorite/5efff2462a37be57848abcae`)
+          const response = await ftn.get(`/api/getfavorite/${userId}`)
           setResults(response.data[0].favorites)
       } catch (error) {
           console.log(error)
       }
   }
   useEffect(() => {
-      getuserid();
       getFavorites();
   }, []);
 
