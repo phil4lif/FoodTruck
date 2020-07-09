@@ -3,8 +3,9 @@ import { View, StyleSheet, Text, SafeAreaView } from 'react-native';
 import TopSpacer from '../components/TopSpacer';
 import { FontAwesome } from '@expo/vector-icons';
 
+
 const UserHomeScreen = () => {
-  
+
   return (
     <SafeAreaView>
       <View>

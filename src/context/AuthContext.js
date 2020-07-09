@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Alert } from 'react-native';
+import { Alert, Dimensions } from 'react-native';
+import * as Location from 'expo-location';
 import createDataContext from './createDataContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import { navigate } from '../navigationRef';
@@ -8,18 +9,44 @@ import ftn from '../api/ftn';
 const fillAsyncStorage = async (id, screen) => {
   try {
     await AsyncStorage.setItem('id', id);
-  }
-  // User was not found (response.data.id == null)
-  catch (err) {
+  } catch (err) {
+    // User was not found (response.data.id == null)
     console.log('err: ', err);
     navigate(screen);
   }
+};
+
+const getUserLocation = (dispatch) => async () => {
+  const { width, height } = Dimensions.get('window');
+  const ASPECT_RATIO = width / height;
+  // latitudeDelta = default map zoom level
+  // Increase to zoom out
+  const LATITUDE_DELTA = 0.012;
+  const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+  let { status } = await Location.requestPermissionsAsync();
+  if (status !== 'granted') {
+    console.log('Permission to access location was denied');
+  }
+  const loc = await Location.getCurrentPositionAsync({});
+  const userLocation = {
+    latitude: loc.coords.latitude,
+    longitude: loc.coords.longitude,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA,
+  };
+  dispatch({ type: 'getUserLocation', payload: userLocation });
 };
 
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'SignIn':
       return {
+        errorMessage: '',
+      };
+    case 'getUserLocation':
+      return {
+        userLocation: action.payload,
         errorMessage: '',
       };
     case 'add_error':
@@ -30,6 +57,8 @@ const authReducer = (state, action) => {
       return {
         errorMessage: action.payload,
       };
+    default:
+      return state;
   }
 };
 
@@ -67,7 +96,7 @@ const signIn = (dispatch) => async ({ username, password }) => {
   try {
     const response = await ftn.post('/api/login', { username, password });
     if (response.data.id) {
-      console.log(response.data.id)
+      console.log(response.data.id);
       await fillAsyncStorage(response.data.id, 'SignIn');
       dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('UserHome');
@@ -107,6 +136,6 @@ const checkAuth = (dispatch) => async () => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signupuser, signupowner, signIn, logout, checkAuth },
-  {}
+  { signupuser, signupowner, signIn, logout, checkAuth, getUserLocation },
+  { userLocation: null }
 );
