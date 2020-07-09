@@ -7,6 +7,7 @@ import ftn from '../api/ftn'
 import FavoritesList from '../components/FavoritesList';
 import { Context as AuthContext} from '../context/AuthContext'
 
+
 const UserHomeScreen = () => {
   const [results, setResults] = useState([]);
   const { state: { userId } } = useContext(AuthContext);
