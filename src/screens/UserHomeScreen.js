@@ -1,32 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, StyleSheet, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import TopSpacer from '../components/TopSpacer';
 import { FontAwesome } from '@expo/vector-icons';
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 import ftn from '../api/ftn'
+import FavoritesList from '../components/FavoritesList';
+import useFavorites from '../hooks/useFavorites';
 
 const UserHomeScreen = () => {
   const [results, setResults] = useState([]);
   const [userid, setUserid] = useState('')
   const getuserid = async () => {
-   const id = await AsyncStorage.getItem('id');
-   setUserid(id)
-   console.log(userid)
+      const id = await AsyncStorage.getItem('id');
+      setUserid(id)
+      console.log(userid + 'from home screen')
   }
-  
   const getFavorites = async () => {
-    try {
-      const response = await ftn.get(`/api/getfavorite/${userid}`)
-      setResults(response.data)
-      // console.log(results)
-    } catch (error) {
-      console.log(error)
-    }
+      try {
+          const response = await ftn.get(`/api/getfavorite/${userid}`)
+          setResults(response.data)
+          // console.log(results)
+      } catch (error) {
+          console.log(error)
+      }
   }
   useEffect(() => {
-    getuserid();
-    getFavorites();
+      getuserid();
+      getFavorites();
   }, []);
 
   return (
@@ -34,22 +35,9 @@ const UserHomeScreen = () => {
       <View style={styles.containerStyle}>
         <Text style={styles.headerStyle}>Welcome to the Food Truck Network</Text>
         <Image style={styles.profImageStyle} source={{ uri: 'https://picsum.photos/200'}} />
-        <View style={styles.faveContainerStyle}>
-          <FlatList 
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={results}
-          keyExtractor={(result) => result._id}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity>
-                <Text>favorites: {item.favorites[0].truckname} </Text>
-                <Image style={styles.profImageStyle} source={{ uri: item.favorites[0].image}} />
-              </TouchableOpacity>
-            )
-          }} 
-          />
-        </View>
+        <ScrollView>
+        <FavoritesList results={results}/>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
