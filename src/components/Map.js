@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { Context as AuthContext } from '../context/AuthContext';
+import AsyncStorage from '@react-native-community/async-storage';
+import ftn from '../api/ftn';
 import * as Location from 'expo-location';
 import MapView, { Marker } from 'react-native-maps';
 import Svg, { Circle, Path } from 'react-native-svg';
@@ -9,6 +12,8 @@ const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+let isTrucksFetched = false;
 
 export default function Map() {
   const markerIcon = icon;
@@ -20,40 +25,71 @@ export default function Map() {
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA,
   });
-  const [markerInfo, setMarkerInfo] = useState([
-    {
-      title: 'Taco City',
-      coordinates: {
-        latitude: 48.71,
-        longitude: -122.44778,
-      },
-      key: 0,
-      active: true,
-      color: '',
-    },
-    {
-      title: 'Wild Mushroom',
-      coordinates: {
-        latitude: 48.71,
-        longitude: -122.44,
-      },
-      key: 1,
-      active: false,
-      color: '',
-    },
-    {
-      title: 'Just Sandwiches',
-      coordinates: {
-        latitude: 48.7111,
-        longitude: -122.4399,
-      },
-      key: 2,
-      active: false,
-      color: '',
-    },
-  ]);
+  const [markerInfo, setMarkerInfo] = useState([]);
+  // {
+  //   title: 'Taco City',
+  //   coordinates: {
+  //     latitude: 48.71,
+  //     longitude: -122.44778,
+  //   },
+  //   key: 0,
+  //   active: true,
+  //   color: '',
+  // },
+  // {
+  //   title: 'Wild Mushroom',
+  //   coordinates: {
+  //     latitude: 48.71,
+  //     longitude: -122.44,
+  //   },
+  //   key: 1,
+  //   active: false,
+  //   color: '',
+  // },
+  // {
+  //   title: 'Just Sandwiches',
+  //   coordinates: {
+  //     latitude: 48.7111,
+  //     longitude: -122.4399,
+  //   },
+  //   key: 2,
+  //   active: false,
+  //   color: '',
+  // },
+  // ]);
 
-  useEffect(() => {
+  let trucks;
+  const getTrucks = async () => {
+    let trucksToDisplay = [];
+    try {
+      const response = await ftn.get('/api/trucks');
+      trucks = response.data;
+      console.log('trucks: ', trucks);
+    } catch (err) {
+      console.log('err: ', err);
+    }
+    for (let i = 0; i < trucks.length; i++) {
+      trucks[i].key = i;
+      trucks[i].active = false;
+      trucks[i].color = '';
+      console.log('trucks[' + [i] + ']: ', trucks[i]);
+      if (trucks[i].location !== null) {
+        console.log('trucks[' + i + '] has loc: ', trucks[i]);
+        trucksToDisplay.push(trucks[i]);
+      }
+    }
+    console.log('trucksToDisplay: ', trucksToDisplay);
+    trucks = trucksToDisplay;
+    console.log('trucks: ', trucks);
+
+    setMarkerInfo(trucks);
+
+    isTrucksFetched = true;
+  };
+
+  isTrucksFetched ? null : getTrucks();
+
+  React.useEffect(() => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== 'granted') {
@@ -73,10 +109,12 @@ export default function Map() {
   }
 
   // const updateZIndex = (marker) => {
-  //   onLayout={(event)=> {
+
   //   const { x, y, w, h } = event.nativeEvent.layout;
   //   return y})
   //     } }
+
+  // console.log('markers: ', markerInfo);
 
   const markers = markerInfo.map((marker) => (
     <Marker
@@ -84,10 +122,10 @@ export default function Map() {
       // const { x, y, w, h } = event.nativeEvent.layout;
       // return y})
       //   }
-      coordinate={marker.coordinates}
-      title={marker.title}
+      coordinate={marker.location}
+      title={marker.truckname}
       key={marker.key}
-      style={styles.markerShadow /*{zIndex: updateZIndex(marker)}*/}
+      style={(styles.markerShadow, { zIndex: 0- marker.location.latitude })}
     >
       <Svg
         xmlns="http://www.w3.org/2000/svg"
