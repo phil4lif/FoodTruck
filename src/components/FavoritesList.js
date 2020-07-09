@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import TrucksDetail from '../components/TrucksDetail'
+import FavoritesDetail from '../components/FavoritesDetail'
 const FavoritesList = ({ results, navigation }) => {
 
 return (
@@ -14,7 +14,7 @@ return (
           renderItem={({ item }) => {
             return (
               <TouchableOpacity>
-                <Text>{item.favorites[7].truckname}</Text>
+                  <FavoritesDetail result={item} />
               </TouchableOpacity>
             )
           }} 

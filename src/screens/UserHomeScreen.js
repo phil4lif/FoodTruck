@@ -11,16 +11,15 @@ import useFavorites from '../hooks/useFavorites';
 const UserHomeScreen = () => {
   const [results, setResults] = useState([]);
   const [userid, setUserid] = useState('')
+
   const getuserid = async () => {
-      const id = await AsyncStorage.getItem('id');
-      setUserid(id)
+      setUserid(await AsyncStorage.getItem('id'));
       console.log(userid + 'from home screen')
   }
   const getFavorites = async () => {
       try {
           const response = await ftn.get(`/api/getfavorite/${userid}`)
-          setResults(response.data)
-          // console.log(results)
+          setResults(response.data[0].favorites)
       } catch (error) {
           console.log(error)
       }
