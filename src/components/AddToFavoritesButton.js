@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import ftn from '../api/ftn';
 
 const AddToFavoritesButton = ({ truckid }) => {
+    
 const saveFavorite = async () => {
 const userid = await AsyncStorage.getItem('id')
 console.log(userid)

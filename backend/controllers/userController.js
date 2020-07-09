@@ -24,6 +24,7 @@ module.exports = {
     console.log('controller')
     let userid = req.params.userid;
     return db.User.find({ _id: userid })
+    .populate("favorites")
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err))
   }
