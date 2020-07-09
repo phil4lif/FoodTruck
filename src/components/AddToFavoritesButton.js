@@ -8,7 +8,7 @@ const AddToFavoritesButton = ({ truckid }) => {
     
 const saveFavorite = async () => {
 const userid = await AsyncStorage.getItem('id')
-console.log(userid)
+
 ftn.put(`/api/addfavorite/${userid}/${truckid}`)
 }
     return (

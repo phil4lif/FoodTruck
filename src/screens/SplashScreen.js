@@ -11,7 +11,7 @@ const SplashScreen = (dispatch) => {
     const getLocalId = async () => {
       try {
         const userId = await AsyncStorage.getItem('id');
-console.log('AsyncStorage userId: ', userId);
+// console.log('AsyncStorage userId: ', userId);
         if (userId) {
           checkAuth();
           navigate('UserHome');
@@ -19,7 +19,7 @@ console.log('AsyncStorage userId: ', userId);
           navigate('Home');
         }
       } catch (err) {
-        console.log('Restoring user id failed: ', err);
+        // console.log('Restoring user id failed: ', err);
       }
     };
 

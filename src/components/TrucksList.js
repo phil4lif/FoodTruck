@@ -4,7 +4,6 @@ import TrucksDetail from './TrucksDetail';
 import { withNavigation } from 'react-navigation'
 
 const TrucksList = ({ title, results, navigation }) => {
-    console.log(results)
     if (!results.length) {
         return null;
     }

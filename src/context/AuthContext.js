@@ -67,7 +67,7 @@ const signIn = (dispatch) => async ({ username, password }) => {
   try {
     const response = await ftn.post('/api/login', { username, password });
     if (response.data.id) {
-      console.log(response.data.id)
+      // console.log(response.data.id)
       await fillAsyncStorage(response.data.id, 'SignIn');
       dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('UserHome');
@@ -98,7 +98,7 @@ const checkAuth = (dispatch) => async () => {
     const userId = await AsyncStorage.getItem('id');
     console.log('userId: ', userId);
     const response = await ftn.post('/api/check-auth', { userId: userId });
-    console.log('response.status: ', response.status);
+    // console.log('response.status: ', response.status);
   } catch (err) {
     console.log('err: ', err);
     dispatch({ type: 'add_error', payload: 'Something went wrong with checking user auth' });
