@@ -42,6 +42,7 @@ const switchNavigator = createSwitchNavigator({
   ownerFlow: createBottomTabNavigator({
     OwnerHome: OwnerHomeScreen,
     Account: AccountScreen,
+    // Calender
   }),
 });
 

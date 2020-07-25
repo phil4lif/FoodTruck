@@ -77,8 +77,9 @@ const signupuser = (dispatch) => async ({ username, email, password }) => {
 
 const signupowner = (dispatch) => async ({ username, email, password }) => {
   try {
-    const response = await ftn.post('/api/create-owner', { username, password });
+    const response = await ftn.post('/api/create-owner', { username, email, password });
     if (response.data.id) {
+      fillAsyncStorage(response.data.id, 'OwnerReg')
       dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('OwnerHome');
     } else {

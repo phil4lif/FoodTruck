@@ -26,8 +26,12 @@ OwnerRegScreen.navigationOptions = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginBottom: 200,
+    height: 200,
+    marginTop: 200,
+    borderRadius: 15,
+    marginBottom: 200,
     justifyContent: 'center',
+    backgroundColor: 'rgba(255, 163, 163,0.5)'
   },
   image: {
     height: '100%',
