@@ -14,7 +14,6 @@ const OwnerRegScreen = ({ navigation }) => {
         <NavLink routeName="SignIn" text="Already Registered? Switch to Sign In" />
     </View>
     </ImageBackground>
-
   );
 };
 

@@ -17,6 +17,7 @@ import MapScreen from './src/screens/MapScreen';
 import BrowseTrucksScreen from './src/screens/BrowseTrucksScreen';
 import SingleTruckShowScreen from './src/screens/SingleTruckShowScreen';
 import { FontAwesome } from '@expo/vector-icons';
+import OwnerAccountScreen from './src/screens/OwnerAccountScreen';
 
 const truckViewFlow = createStackNavigator({
   BrowseTrucks: BrowseTrucksScreen,
@@ -41,7 +42,7 @@ const switchNavigator = createSwitchNavigator({
   }),
   ownerFlow: createBottomTabNavigator({
     OwnerHome: OwnerHomeScreen,
-    Account: AccountScreen,
+    OwnerAccount: OwnerAccountScreen,
     // Calender
   }),
 });
