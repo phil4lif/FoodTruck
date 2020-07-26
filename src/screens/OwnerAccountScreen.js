@@ -10,7 +10,6 @@ const OwnerAccountScreen = () => {
 
       <Text style={{ fontSize: 48 }}>Settings</Text>
       <Button title='Add New Food Truck' />
-      <Button title='Switch Trucks' />
       <Button onPress={logout} title='Logout' />
     </View>
   );

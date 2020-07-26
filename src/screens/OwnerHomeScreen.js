@@ -1,8 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Button, FlatList, Image } from 'react-native';
 
 const OwnerHomeScreen = () => {
-    return <Text style={{ fontSize: 48 }}>Owner Home Screen</Text>
+    return (
+    <View>
+    <Text style={{ fontSize: 48 }}>Owner Home Screen</Text>
+    <Button title='Add Your Truck' />
+    </View>
+    
+    )
 };
 
 const styles = StyleSheet.create({});
