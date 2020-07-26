@@ -67,7 +67,7 @@ module.exports.create = [
       /**/ console.log('validation passed');
       // Takes req.body.password and hashes it
       // then saves hashed password to db instead of plain text password
-      bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         /**/ console.log('hashing password...');
         if (err) return next(err);
         const newOwner = new db.Owner({
@@ -76,9 +76,17 @@ module.exports.create = [
           trucks: [] /* Adds empty trucks array, ready for adding truck(s) */,
         });
         //   Hashing complete; save to DB
-        db.Owner.create(newOwner);
+        await db.Owner.create(newOwner);
         //   Send success msg to client
-        res.send('Owner ' + newOwner.username + ' created');
+        //get new owner from DB to respond with id
+        db.Owner.findOne({ username: newOwner.username, password: newOwner.password }).then((foundOwner) => {
+          console.log('foundOwner: ', foundOwner);
+          console.log('Owner ' + foundOwner.username + ' created');
+          res.json({
+            username: foundOwner.username,
+            id: foundOwner._id
+          })
+        })
       });
     }
   },
