@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Button, FlatList, Image, Modal, Alert, TouchableHighlight } from 'react-native';
 // import AddTruckModal from '../components/AddTruckModal';
+import AddTruckForm from '../components/AddTruckForm';
 
 const OwnerHomeScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -17,6 +18,7 @@ const OwnerHomeScreen = () => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Hello Modal</Text>
+                        <AddTruckForm />
                         <TouchableHighlight
                             style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                             onPress={() => {

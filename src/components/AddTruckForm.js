@@ -12,7 +12,7 @@ const AddTruckForm = () => {
             <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                // style={}
+                style={styles.input}
                 placeholder="Truck Name"
                 value={truckname}
                 onChangeText={text => setTruckName(text)}
@@ -21,7 +21,7 @@ const AddTruckForm = () => {
             <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                // style={}
+                style={styles.input}
                 placeholder="eg. tacos, burritos, vegan, barbecue, etc"
                 value={keywords}
                 onChangeText={text => setKeyWords(text)}
@@ -30,7 +30,7 @@ const AddTruckForm = () => {
             <TextInput
                 autocapitalize="none"
                 autoCorrect={false}
-                // style={}
+                style={styles.input}
                 placeholder="Link to Main Photo"
                 value={mainphotolink}
                 onChangeText={text => setMainPhotoLink(text)}
@@ -53,8 +53,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         borderStyle: 'solid',
+        borderRadius: 10,
         height: 30,
-        width: 120,
+        width: 200,
     },
 })
 export default AddTruckForm;
