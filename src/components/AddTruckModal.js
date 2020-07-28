@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button, FlatList, Image, Modal, Alert, TouchableHighlight } from 'react-native';
-// import AddTruckModal from '../components/AddTruckModal';
+import {
+    Alert,
+    Modal,
+    StyleSheet,
+    Text,
+    TouchableHighlight,
+    View
+} from 'react-native';
+import AddTruckForm from './AddTruckForm';
 
-const OwnerHomeScreen = () => {
-    const [modalVisible, setModalVisible] = useState(false);
+const AddTruckModal = () => {
+    // const [modalVisible, setModalVisible] = useState(false);
     return (
-        <View>
+        <View style={styles.centeredView}>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -18,7 +25,7 @@ const OwnerHomeScreen = () => {
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Hello Modal</Text>
                         <TouchableHighlight
-                            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                            style={{ ...styles.openButton, backgroundColor: "#2196F3"}}
                             onPress={() => {
                                 setModalVisible(!modalVisible);
                             }}
@@ -28,15 +35,17 @@ const OwnerHomeScreen = () => {
                     </View>
                 </View>
             </Modal>
-            <Text style={{ fontSize: 48 }}>Owner Home Screen</Text>
-            <Button
+            {/* <TouchableHighlight
+                style={styles.openButton}
                 onPress={() => {
                     setModalVisible(true);
-                }} title='Add Your Truck' />
+                }}
+            >
+                <Text style={styles.textStyle}>Show Modal</Text>
+            </TouchableHighlight> */}
         </View>
-
     )
-};
+}
 
 const styles = StyleSheet.create({
     centeredView: {
@@ -76,5 +85,4 @@ const styles = StyleSheet.create({
       textAlign: "center"
     }
   });
-
-export default OwnerHomeScreen;
+  

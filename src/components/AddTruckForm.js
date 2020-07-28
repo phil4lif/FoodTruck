@@ -7,38 +7,54 @@ const AddTruckForm = () => {
     const [keywords, setKeyWords] = useState('');
     const [mainphotolink, setMainPhotoLink] = useState('')
     return(
-        <View>
-            <Text>Truck Name</Text>
+        <View style={styles.containerStyle}>
+            <Text style={styles.labelStyle}>Truck Name</Text>
             <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={}
+                // style={}
                 placeholder="Truck Name"
                 value={truckname}
                 onChangeText={text => setTruckName(text)}
                 />
-            <Text>Add Search Keywords up to 5 seperated by commas</Text>
+            <Text style={styles.labelStyle}>Add Search Keywords up to 5 seperated by commas</Text>
             <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
-                style={}
+                // style={}
                 placeholder="eg. tacos, burritos, vegan, barbecue, etc"
                 value={keywords}
                 onChangeText={text => setKeyWords(text)}
                 />
-            <Text>Link a Main Photo</Text>
+            <Text style={styles.labelStyle}>Link a Main Photo</Text>
             <TextInput
                 autocapitalize="none"
                 autoCorrect={false}
-                style={}
+                // style={}
                 placeholder="Link to Main Photo"
                 value={mainphotolink}
                 onChangeText={text => setMainPhotoLink(text)}
                 />
                 <Button title="Submit"
-                style={}
+                style={styles.button}
                 onPress={() => onsubmit({ truckname, keywords, mainphotolink, otherphotos })}
                 />
         </View>
     )
 }
+const styles = StyleSheet.create({
+    containerStyle: {
+        alignItems: 'center'
+    },
+    labelStyle: {
+        fontSize: 18
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        height: 30,
+        width: 120,
+    },
+})
+export default AddTruckForm;
