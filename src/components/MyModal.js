@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import AddTruckForm from './AddTruckForm';
 
-const AddTruckModal = () => {
-    // const [modalVisible, setModalVisible] = useState(false);
+const MyModal = ({ modalVisible, setModalVisible }) => {
+    
     return (
         <View style={styles.centeredView}>
             <Modal
@@ -86,3 +86,4 @@ const styles = StyleSheet.create({
     }
   });
   
+  export default MyModal;

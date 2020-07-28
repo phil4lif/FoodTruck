@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Button, FlatList, Image, Modal, Alert, TouchableHighlight } from 'react-native';
-// import AddTruckModal from '../components/AddTruckModal';
+// import MyModal from '../components/MyModal';
 import AddTruckForm from '../components/AddTruckForm';
 import { FontAwesome } from '@expo/vector-icons';
 
 const OwnerHomeScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
+    const onSubmit = () => {
+        
+    }
     return (
         <View>
+            {/* <MyModal>
+                <AddTruckForm />
+            </MyModal> */}
+
             <Modal
                 animationType="slide"
                 transparent={true}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Button, TextInput } from 'react-native';
 
 
-const AddTruckForm = () => {
+const AddTruckForm = ({ onSubmit}) => {
     const [truckname, setTruckName] = useState('');
     const [keywords, setKeyWords] = useState('');
     const [mainphotolink, setMainPhotoLink] = useState('')
@@ -37,7 +37,7 @@ const AddTruckForm = () => {
                 />
                 <Button title="Submit"
                 style={styles.button}
-                onPress={() => onsubmit({ truckname, keywords, mainphotolink, otherphotos })}
+                onPress={() => onSubmit({ truckname, keywords, mainphotolink })}
                 />
         </View>
     )
