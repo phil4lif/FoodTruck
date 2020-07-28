@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, Button, FlatList, Image, Modal, Alert, TouchableHighlight } from 'react-native';
 // import AddTruckModal from '../components/AddTruckModal';
 import AddTruckForm from '../components/AddTruckForm';
+import { FontAwesome } from '@expo/vector-icons';
 
 const OwnerHomeScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -36,10 +37,13 @@ const OwnerHomeScreen = () => {
                     setModalVisible(true);
                 }} title='Add Your Truck' />
         </View>
-
     )
 };
 
+OwnerHomeScreen.navigationOptions = {
+    title: 'Home',
+    tabBarIcon: <FontAwesome name="home" size={20} />
+}
 const styles = StyleSheet.create({
     centeredView: {
       flex: 1,
