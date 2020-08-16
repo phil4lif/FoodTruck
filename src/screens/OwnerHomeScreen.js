@@ -3,12 +3,10 @@ import { View, StyleSheet, Text, Button, FlatList, Image, Modal, Alert, Touchabl
 // import MyModal from '../components/MyModal';
 import AddTruckForm from '../components/AddTruckForm';
 import { FontAwesome } from '@expo/vector-icons';
-
+import { Context as AuthContext } from '../context/AuthContext';
 const OwnerHomeScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const onSubmit = () => {
-        
-    }
+    const { state, createTruck } = useContext(AuthContext);
     return (
         <View>
             {/* <MyModal>
@@ -26,7 +24,7 @@ const OwnerHomeScreen = () => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Hello Modal</Text>
-                        <AddTruckForm />
+                        <AddTruckForm onSubmit={createTruck}/>
                         <TouchableHighlight
                             style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                             onPress={() => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Button, TextInput } from 'react-native';
 
 
-const AddTruckForm = ({ onSubmit}) => {
+const AddTruckForm = ({ onSubmit }) => {
     const [truckname, setTruckName] = useState('');
     const [keywords, setKeyWords] = useState('');
     const [mainphotolink, setMainPhotoLink] = useState('')
@@ -17,7 +17,7 @@ const AddTruckForm = ({ onSubmit}) => {
                 value={truckname}
                 onChangeText={text => setTruckName(text)}
                 />
-            <Text style={styles.labelStyle}>Add Search Keywords up to 5 seperated by commas</Text>
+            <Text style={styles.labelStyle}>Add Keywords seperated by commas</Text>
             <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}

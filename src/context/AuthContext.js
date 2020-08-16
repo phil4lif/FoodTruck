@@ -90,6 +90,17 @@ const signupowner = (dispatch) => async ({ username, email, password }) => {
   }
 };
 
+const createTruck = (dispatch) => async ({ truckname, keywords, mainphotolink }) => {
+  try {
+    const response = await ftn.post('/api/create-truck', {truckname, keywords, mainphotolink });
+    
+
+  } catch (err) {
+    dispatch({ type: 'add_error', payload: 'Something Went Wrong' });
+  }
+}
+
+
 const signIn = (dispatch) => async ({ username, password }) => {
   try {
     const response = await ftn.post('/api/login', { username, password });
