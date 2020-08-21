@@ -77,8 +77,9 @@ const signupuser = (dispatch) => async ({ username, email, password }) => {
 
 const signupowner = (dispatch) => async ({ username, email, password }) => {
   try {
-    const response = await ftn.post('/api/create-owner', { username, password });
+    const response = await ftn.post('/api/create-owner', { username, email, password });
     if (response.data.id) {
+      fillAsyncStorage(response.data.id, 'OwnerReg')
       dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('OwnerHome');
     } else {
@@ -88,6 +89,17 @@ const signupowner = (dispatch) => async ({ username, email, password }) => {
     dispatch({ type: 'add_error', payload: 'Something went wrong' });
   }
 };
+
+const createTruck = (dispatch) => async ({ truckname, keywords, mainphotolink }) => {
+  try {
+    const response = await ftn.post('/api/create-truck', {truckname, keywords, mainphotolink });
+    
+
+  } catch (err) {
+    dispatch({ type: 'add_error', payload: 'Something Went Wrong' });
+  }
+}
+
 
 const signIn = (dispatch) => async ({ username, password }) => {
   try {

@@ -56,7 +56,7 @@ const truckSeed = [
     truckname: 'Elote Man',
     image:
       'https://images.unsplash.com/photo-1531950110602-9c09c9102fdf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
-    location: null,
+    location: { latitude: 33.4484, longitude: -112.0740 },
     foodkeywords: ['street corn', 'elote', 'aguas frescas', 'mexican'],
     otherphotos: [
       'https://images.unsplash.com/photo-1578536892090-aecdaea1f6cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
@@ -66,7 +66,7 @@ const truckSeed = [
     truckname: 'Burrito Man',
     image:
       'https://images.unsplash.com/photo-1592422301197-39e67a71bc37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
-    location: null,
+    location: { latitude: 33.4479, longitude: -112.0737 },
     foodkeywords: ['burrito', 'mexican'],
     otherphotos: [
       'https://images.unsplash.com/photo-1562059390-a761a084768e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=706&q=80',
@@ -76,7 +76,7 @@ const truckSeed = [
   {
     truckname: 'Pasta Man',
     image: 'https://images.unsplash.com/photo-1547567497-fa0a1720f457?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
-    location: null,
+    location: { latitude: 33.4984, longitude: -111.9261 },
     foodkeywords: ['pasta', 'italian'],
     otherphotos: [
       'https://images.unsplash.com/photo-1570700258112-e259d3dbafb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button, FlatList, Image, Modal, Alert, TouchableHighlight } from 'react-native';
-// import MyModal from '../components/MyModal';
-import AddTruckForm from '../components/AddTruckForm';
-import { FontAwesome } from '@expo/vector-icons';
-import { Context as AuthContext } from '../context/AuthContext';
-const OwnerHomeScreen = () => {
-    const [modalVisible, setModalVisible] = useState(false);
-    const { state, createTruck } = useContext(AuthContext);
-    return (
-        <View>
-            {/* <MyModal>
-                <AddTruckForm />
-            </MyModal> */}
+import {
+    Alert,
+    Modal,
+    StyleSheet,
+    Text,
+    TouchableHighlight,
+    View
+} from 'react-native';
+import AddTruckForm from './AddTruckForm';
 
+const MyModal = ({ modalVisible, setModalVisible }) => {
+    
+    return (
+        <View style={styles.centeredView}>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -24,9 +24,8 @@ const OwnerHomeScreen = () => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>Hello Modal</Text>
-                        <AddTruckForm onSubmit={createTruck}/>
                         <TouchableHighlight
-                            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                            style={{ ...styles.openButton, backgroundColor: "#2196F3"}}
                             onPress={() => {
                                 setModalVisible(!modalVisible);
                             }}
@@ -36,19 +35,18 @@ const OwnerHomeScreen = () => {
                     </View>
                 </View>
             </Modal>
-            <Text style={{ fontSize: 48 }}>Owner Home Screen</Text>
-            <Button
+            {/* <TouchableHighlight
+                style={styles.openButton}
                 onPress={() => {
                     setModalVisible(true);
-                }} title='Add Your Truck' />
+                }}
+            >
+                <Text style={styles.textStyle}>Show Modal</Text>
+            </TouchableHighlight> */}
         </View>
     )
-};
-
-OwnerHomeScreen.navigationOptions = {
-    title: 'Home',
-    tabBarIcon: <FontAwesome name="home" size={20} />
 }
+
 const styles = StyleSheet.create({
     centeredView: {
       flex: 1,
@@ -87,5 +85,5 @@ const styles = StyleSheet.create({
       textAlign: "center"
     }
   });
-
-export default OwnerHomeScreen;
+  
+  export default MyModal;
