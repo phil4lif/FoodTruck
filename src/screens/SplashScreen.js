@@ -13,7 +13,7 @@ const SplashScreen = (dispatch) => {
         const userId = await AsyncStorage.getItem('id');
 // console.log('AsyncStorage userId: ', userId);
         if (userId) {
-          checkAuth();
+          checkAuth('user');
           navigate('UserHome');
         } else {
           navigate('Home');

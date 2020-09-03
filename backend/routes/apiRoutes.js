@@ -34,13 +34,16 @@ function apiRoutes(app) {
   app.post('/api/create-owner', ownerController.create);
   app.post('/api/create-truck', truckController.create);
   //put route for saving a truck to favorites
-  app.put('/api/addfavorite/:userid/:truckid', userController.addFavorite)
+  app.put('/api/addfavorite/:userid/:truckid', userController.addFavorite);
   //get route for displaying the users favorties on their home page
-  app.get('/api/getfavorite/:userid', userController.getFavorites)
+  app.get('/api/getfavorite/:userid', userController.getFavorites);
   // POST request for user/owner login
   app.post('/api/login', userController.login);
 
   app.post('/api/check-auth', userController.checkAuth);
+  app.post('/api/owner-login', ownerController.login);
+
+  app.post('/api/owner-check-auth', ownerController.checkAuth);
 }
 
 module.exports = apiRoutes;
