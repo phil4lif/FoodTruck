@@ -6,7 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
-const { User } = require('./models');
+const { User, Owner } = require('./models');
 
 // Auth
 passport.use(
@@ -31,6 +31,28 @@ passport.use(
     });
   })
 );
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    Owner.findOne({ username: username }, function (err, owner) {
+      if (err) return done(err);
+      if (!owner) {
+        return done(null, false, { msg: 'Incorrect username' });
+      }
+      // Compare plain-text pw to hashed pw in db
+      bcrypt.compare(password, owner.password, (err, res) => {
+        if (res) {
+          // passwords match! log user in
+          // /**/ console.log('password correct!');
+          return done(null, owner);
+        } else {
+          // /**/ console.log('password incorrect...');
+          // passwords do not match!
+          return done(null, false, { msg: 'Incorrect password' });
+        }
+      });
+    });
+  })
+);
 
 passport.serializeUser((user, done) => {
   // console.log('serialize user: ', user);
@@ -41,6 +63,12 @@ passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => {
     // console.log('deserialize user: ', user);
     done(err, user);
+  });
+});
+passport.deserializeUser((id, done) => {
+  Owner.findById(id, (err, owner) => {
+    // console.log('deserialize user: ', user);
+    done(err, owner);
   });
 });
 

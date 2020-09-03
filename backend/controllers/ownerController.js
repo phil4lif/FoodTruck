@@ -91,3 +91,40 @@ module.exports.create = [
     }
   },
 ];
+
+module.exports.login = (req, res, next) => {
+  passport.authenticate('local', function (err, owner, info) {
+    if (err) {
+      console.log('Login error: ', err);
+      return next(err);
+    }
+    if (!owner) {
+      return res.json('Incorrect username or password');
+    }
+    // Success; log in
+    req.logIn(owner, function (err) {
+      if (err) {
+        return next(err);
+      }
+
+      // Send user info back to client as JSON
+      // res.status(200).json(response);
+      // return res.redirect(client + '/private-space');
+      console.log('Login successful');
+      res.json({
+        username: owner.username,
+        id: owner._id,
+      });
+    });
+  })(req, res, next);
+};
+
+module.exports.checkAuth = (req, res, next) => {
+  db.Owner.findById(req.body.userId).then((foundOwner) => {
+    if (foundOwner) {
+      res.json(foundOwner);
+    } else {
+      res.json(null);
+    }
+  });
+};

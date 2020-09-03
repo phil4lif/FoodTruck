@@ -79,7 +79,7 @@ const signupowner = (dispatch) => async ({ username, email, password }) => {
   try {
     const response = await ftn.post('/api/create-owner', { username, email, password });
     if (response.data.id) {
-      fillAsyncStorage(response.data.id, 'OwnerReg')
+      fillAsyncStorage(response.data.id, 'OwnerReg');
       dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('OwnerHome');
     } else {
@@ -92,14 +92,11 @@ const signupowner = (dispatch) => async ({ username, email, password }) => {
 
 const createTruck = (dispatch) => async ({ truckname, keywords, mainphotolink }) => {
   try {
-    const response = await ftn.post('/api/create-truck', {truckname, keywords, mainphotolink });
-    
-
+    const response = await ftn.post('/api/create-truck', { truckname, keywords, mainphotolink });
   } catch (err) {
     dispatch({ type: 'add_error', payload: 'Something Went Wrong' });
   }
-}
-
+};
 
 const signIn = (dispatch) => async ({ username, password }) => {
   try {
@@ -109,6 +106,22 @@ const signIn = (dispatch) => async ({ username, password }) => {
       await fillAsyncStorage(response.data.id, 'SignIn');
       dispatch({ type: 'SignIn', payload: response.data.id });
       navigate('UserHome');
+    } else {
+      Alert.alert('Sign in error', response.data);
+    }
+  } catch (err) {
+    console.log('err: ', err);
+    dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });
+  }
+};
+const ownerSignIn = (dispatch) => async ({ username, password }) => {
+  try {
+    const response = await ftn.post('/api/owner-login', { username, password });
+    if (response.data.id) {
+      // console.log(response.data.id)
+      await fillAsyncStorage(response.data.id, 'SignIn');
+      dispatch({ type: 'SignIn', payload: response.data.id });
+      navigate('OwnerHome');
     } else {
       Alert.alert('Sign in error', response.data);
     }
@@ -130,19 +143,20 @@ const logout = (dispatch) => async () => {
   }
 };
 
-const checkAuth = (dispatch) => async () => {
-  console.log('Checking user auth');
+// userType is either user or owner
+const checkAuth = (dispatch) => async (userType) => {
+  console.log(`Checking ${userType} auth`);
   try {
-    const userId = await AsyncStorage.getItem('id');
-    console.log('userId: ', userId);
-    if (userId) {
-      dispatch({ type: 'SignIn', payload: userId });
+    const id = await AsyncStorage.getItem('id');
+    console.log('id: ', id);
+    if (id) {
+      dispatch({ type: 'SignIn', payload: id });
     }
-    const response = await ftn.post('/api/check-auth', { userId: userId });
+    const response = await ftn.post(`/api/${userType === owner ? 'owner-' : null}check-auth`, { id });
     console.log('response.status: ', response.status);
   } catch (err) {
     console.log('err: ', err);
-    dispatch({ type: 'add_error', payload: 'Something went wrong with checking user auth' });
+    dispatch({ type: 'add_error', payload: `Something went wrong with checking ${userType} auth` });
   }
 };
 
