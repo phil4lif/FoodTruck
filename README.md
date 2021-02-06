@@ -1,10 +1,12 @@
 # README
-## Food Trucks App
+## Street Food App
+
 [Phil Cowan](https://github.com/phil4lif)
  & 
 [Jake Pfaffenroth](https://github.com/jakepfaffenroth)
 
 This React Native app helps users explore new food trucks near them and quickly find their favorites.
+
 
 ### Users can:
 * View truck locations on a map
